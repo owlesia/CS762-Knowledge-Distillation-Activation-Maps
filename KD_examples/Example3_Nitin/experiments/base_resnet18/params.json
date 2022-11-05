@@ -7,7 +7,7 @@
     "num_epochs": 200,
     "save_summary_steps": 20,
     "num_workers": 1,
-    "data_dir": "cs762/data/pet",
+    "data_dir": "/home/jupyter/cs762/data/oxford-iiit-pet",
     "valid_size": 0.2,
     "batch_size": 24,
     "augment": "True"
