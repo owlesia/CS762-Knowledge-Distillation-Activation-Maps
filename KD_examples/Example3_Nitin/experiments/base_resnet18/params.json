@@ -9,6 +9,6 @@
     "num_workers": 1,
     "data_dir": "/home/jupyter/cs762/data",
     "valid_size": 0.2,
-    "batch_size": 24,
+    "batch_size": 28,
     "augment": "True"
 }
