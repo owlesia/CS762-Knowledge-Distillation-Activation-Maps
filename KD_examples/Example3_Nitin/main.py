@@ -18,6 +18,7 @@ import utils
 import dataloader as data_loader
 import resnet
 from evaluate import evaluate, evaluate_kd
+from torch.utils.tensorboard import SummaryWriter
 
 parser = argparse.ArgumentParser()
 # parser.add_argument('--data_dir', default='data/64x64_SIGNS', help="Directory for the dataset")
@@ -115,6 +116,10 @@ def train_and_evaluate(model, train_dataloader, val_dataloader, optimizer,
     # learning rate schedulers
     scheduler = StepLR(optimizer, step_size=100, gamma=0.1)
 
+    #Tensorboard logger
+    tb_path = (os.path.join(model_dir, 'tb_logs'))
+    writer = SummaryWriter(tb_path)
+
     for epoch in range(params.num_epochs):
      
         # Run one epoch
@@ -155,11 +160,10 @@ def train_and_evaluate(model, train_dataloader, val_dataloader, optimizer,
         epoch_metrics['val_accuracy'] = val_metrics['accuracy']
         epoch_metrics['val_loss'] = val_metrics['loss']
 
-        #Tensorboard logger
-        board_logger = utils.Board_Logger(os.path.join(model_dir, 'board_logs'))
+        #write to tensorboard
         for tag, value in epoch_metrics.items():
-            board_logger.scalar_summary(tag, value, epoch+1)
-
+            writer.add_scalar(tag, value, epoch+1)
+    writer.close()
 
 # Defining train_kd & train_and_evaluate_kd functions
 def train_kd(model, teacher_model, optimizer, loss_fn_kd, dataloader, metrics, params):
@@ -256,6 +260,10 @@ def train_and_evaluate_kd(model, teacher_model, train_dataloader, val_dataloader
     # learning rate schedulers for different models:
     scheduler = StepLR(optimizer, step_size=100, gamma=0.1) 
 
+    #Tensorboard logger
+    tb_path = (os.path.join(model_dir, 'tb_logs'))
+    writer = SummaryWriter(tb_path)
+
     for epoch in range(params.num_epochs):
 
         # Run one epoch
@@ -293,23 +301,14 @@ def train_and_evaluate_kd(model, teacher_model, train_dataloader, val_dataloader
         last_json_path = os.path.join(model_dir, "metrics_val_last_weights.json")
         utils.save_dict_to_json(val_metrics, last_json_path)
 
-
-        #============ TensorBoard logging: uncomment below to turn in on ============#
-        #Tensorboard logger setup
-        board_logger = utils.Board_Logger(os.path.join(model_dir, 'board_logs'))
-        # (1) Log the scalar values
         info = {
             'val accuracy': val_acc
         }
 
         for tag, value in info.items():
-            board_logger.scalar_summary(tag, value, epoch+1)
-
-        # # (2) Log values and gradients of the parameters (histogram)
-        # for tag, value in model.named_parameters():
-        #     tag = tag.replace('.', '/')
-        #     board_logger.histo_summary(tag, value.data.cpu().numpy(), epoch+1)
-        #     # board_logger.histo_summary(tag+'/grad', value.grad.data.cpu().numpy(), epoch+1)
+            writer.add_scalar(tag, value, epoch+1)
+    
+    writer.close()
 
 
 if __name__ == '__main__':
@@ -323,13 +322,14 @@ if __name__ == '__main__':
     # Set the random seed for reproducible experiments
     random.seed(230)
     torch.manual_seed(230)
+
+    # use GPU if available
+    params.cuda = torch.cuda.is_available()
     if params.cuda: torch.cuda.manual_seed(230)
 
     # Set the logger
     utils.set_logger(os.path.join(args.model_dir, 'train.log'))
 
-    # use GPU if available
-    params.cuda = torch.cuda.is_available()
     if not params.cuda:
         logging.info("GPU not available. Proceeding with CPU")
         
@@ -382,7 +382,7 @@ if __name__ == '__main__':
         train_and_evaluate_kd(model, teacher_model, train_dl, dev_dl, optimizer, loss_fn_kd,
                               metrics, params, args.model_dir, args.restore_file)
 
-    # non-KD mode: regular training of the baseline CNN or ResNet-18
+    # non-KD mode: regular training of the baseline ResNet-18/50 models
     else:
         if params.model_version == "resnet18":
             model = resnet.ResNet18().cuda() if params.cuda else resnet.ResNet18()

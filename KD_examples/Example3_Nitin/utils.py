@@ -92,21 +92,18 @@ def set_logger(log_path):
     """
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
-    if logger.handlers:
+    
+    if not logger.handlers:
         # Logging to a file
         file_handler = logging.FileHandler(log_path)
         file_handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s: %(message)s'))
         logger.addHandler(file_handler)
 
-        # # Logging to console
-        # stream_handler = logging.StreamHandler()
-        # stream_handler.setFormatter(logging.Formatter('%(message)s'))
-        # logger.addHandler(stream_handler)
-        
-    else:
-        logging.info("logger handlers not available")
+        # Logging to console
+        stream_handler = logging.StreamHandler()
+        stream_handler.setFormatter(logging.Formatter('%(message)s'))
+        logger.addHandler(stream_handler)
 
-        
 
 
 def save_dict_to_json(d, json_path):
