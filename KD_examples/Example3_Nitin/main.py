@@ -21,14 +21,14 @@ from evaluate import evaluate, evaluate_kd
 
 parser = argparse.ArgumentParser()
 # parser.add_argument('--data_dir', default='data/64x64_SIGNS', help="Directory for the dataset")
-parser.add_argument('--model_dir', default='experiments/base_model',
+parser.add_argument('--model_dir', default='experiments/base_resnet18',
                     help="Directory containing params.json")
 parser.add_argument('--restore_file', default=None,
                     help="Optional, name of the file in --model_dir \
                     containing weights to reload before training")  # 'best' or 'train'
 
 
-def train(model, optimizer, loss_fn, dataloader, metrics, params, scheduler):
+def train(model, optimizer, loss_fn, dataloader, metrics, params):
     """Train the model on `num_steps` batches
 
     Args:
@@ -67,7 +67,6 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params, scheduler):
 
             # performs updates using calculated gradients
             optimizer.step()
-            scheduler.step()
 
             # Evaluate summaries only once in a while
             if i % params.save_summary_steps == 0:
@@ -86,11 +85,13 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params, scheduler):
 
             t.set_postfix(loss='{:05.3f}'.format(loss_avg()))
             t.update()
-
+    
     # compute mean of all metrics in summary
     metrics_mean = {metric:np.mean([x[metric] for x in summ]) for metric in summ[0]}
     metrics_string = " ; ".join("{}: {:05.3f}".format(k, v) for k, v in metrics_mean.items())
     logging.info("- Train metrics: " + metrics_string)
+
+    return metrics_mean
 
 
 def train_and_evaluate(model, train_dataloader, val_dataloader, optimizer,
@@ -112,7 +113,7 @@ def train_and_evaluate(model, train_dataloader, val_dataloader, optimizer,
     best_val_acc = 0.0
 
     # learning rate schedulers
-    scheduler = StepLR(optimizer, step_size=150, gamma=0.1)
+    scheduler = StepLR(optimizer, step_size=100, gamma=0.1)
 
     for epoch in range(params.num_epochs):
      
@@ -120,7 +121,8 @@ def train_and_evaluate(model, train_dataloader, val_dataloader, optimizer,
         logging.info("\nEpoch {}/{}".format(epoch + 1, params.num_epochs))
 
         # compute number of batches in one epoch (one full pass over the training set)
-        train(model, optimizer, loss_fn, train_dataloader, metrics, params, scheduler)
+        epoch_metrics = train(model, optimizer, loss_fn, train_dataloader, metrics, params)
+        scheduler.step()
 
         # Evaluate for one epoch on validation set
         logging.info("Evaluating on validation set")
@@ -148,6 +150,15 @@ def train_and_evaluate(model, train_dataloader, val_dataloader, optimizer,
         # Save latest val metrics in a json file in the model directory
         last_json_path = os.path.join(model_dir, "metrics_val_last_weights.json")
         utils.save_dict_to_json(val_metrics, last_json_path)
+
+        #append to epoch_metrics
+        epoch_metrics['val_accuracy'] = val_metrics['accuracy']
+        epoch_metrics['val_loss'] = val_metrics['loss']
+
+        #Tensorboard logger
+        board_logger = utils.Board_Logger(os.path.join(model_dir, 'board_logs'))
+        for tag, value in epoch_metrics.items():
+            board_logger.scalar_summary(tag, value, epoch+1)
 
 
 # Defining train_kd & train_and_evaluate_kd functions
@@ -243,11 +254,9 @@ def train_and_evaluate_kd(model, teacher_model, train_dataloader, val_dataloader
     best_val_acc = 0.0
     
     # learning rate schedulers for different models:
-    scheduler = StepLR(optimizer, step_size=150, gamma=0.1) 
+    scheduler = StepLR(optimizer, step_size=100, gamma=0.1) 
 
     for epoch in range(params.num_epochs):
-
-        scheduler.step()
 
         # Run one epoch
         logging.info("\nEpoch {}/{}".format(epoch + 1, params.num_epochs))
@@ -255,6 +264,7 @@ def train_and_evaluate_kd(model, teacher_model, train_dataloader, val_dataloader
         # compute number of batches in one epoch (one full pass over the training set)
         train_kd(model, teacher_model, optimizer, loss_fn_kd, train_dataloader,
                  metrics, params)
+        scheduler.step()
 
         # Evaluate for one epoch on validation set
         logging.info("Evaluating on validation set")
@@ -284,16 +294,16 @@ def train_and_evaluate_kd(model, teacher_model, train_dataloader, val_dataloader
         utils.save_dict_to_json(val_metrics, last_json_path)
 
 
-        # #============ TensorBoard logging: uncomment below to turn in on ============#
-        # Tensorboard logger setup
-        # board_logger = utils.Board_Logger(os.path.join(model_dir, 'board_logs'))
-        # # (1) Log the scalar values
-        # info = {
-        #     'val accuracy': val_acc
-        # }
+        #============ TensorBoard logging: uncomment below to turn in on ============#
+        #Tensorboard logger setup
+        board_logger = utils.Board_Logger(os.path.join(model_dir, 'board_logs'))
+        # (1) Log the scalar values
+        info = {
+            'val accuracy': val_acc
+        }
 
-        # for tag, value in info.items():
-        #     board_logger.scalar_summary(tag, value, epoch+1)
+        for tag, value in info.items():
+            board_logger.scalar_summary(tag, value, epoch+1)
 
         # # (2) Log values and gradients of the parameters (histogram)
         # for tag, value in model.named_parameters():
@@ -310,9 +320,6 @@ if __name__ == '__main__':
     assert os.path.isfile(json_path), "No json configuration file found at {}".format(json_path)
     params = utils.Params(json_path)
 
-    # use GPU if available
-    params.cuda = torch.cuda.is_available()
-
     # Set the random seed for reproducible experiments
     random.seed(230)
     torch.manual_seed(230)
@@ -321,6 +328,11 @@ if __name__ == '__main__':
     # Set the logger
     utils.set_logger(os.path.join(args.model_dir, 'train.log'))
 
+    # use GPU if available
+    params.cuda = torch.cuda.is_available()
+    if not params.cuda:
+        logging.info("GPU not available. Proceeding with CPU")
+        
     # Create the input data pipeline
     logging.info("Loading the datasets...")
 

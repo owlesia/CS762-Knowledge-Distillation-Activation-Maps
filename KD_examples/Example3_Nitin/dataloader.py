@@ -79,12 +79,12 @@ def get_train_valid_loader(data_dir,
     # load the dataset
     train_dataset = datasets.OxfordIIITPet(
         root=data_dir, split = 'trainval',
-        download=True, transform=train_transform,
+        download=False, transform=train_transform,
     )
 
     valid_dataset = datasets.OxfordIIITPet(
         root=data_dir, split = 'trainval',
-        download=True, transform=valid_transform,
+        download=False, transform=valid_transform,
     )
 
     num_train = len(train_dataset)

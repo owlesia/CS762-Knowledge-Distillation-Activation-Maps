@@ -1,4 +1,5 @@
-.ipynb_checkpoints
+*.ipynb_checkpoints
 *.tar
 *.gz
 __pycache__
+.gitignore

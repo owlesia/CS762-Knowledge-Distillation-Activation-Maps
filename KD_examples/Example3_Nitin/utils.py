@@ -102,6 +102,11 @@ def set_logger(log_path):
         # stream_handler = logging.StreamHandler()
         # stream_handler.setFormatter(logging.Formatter('%(message)s'))
         # logger.addHandler(stream_handler)
+        
+    else:
+        logging.info("logger handlers not available")
+
+        
 
 
 def save_dict_to_json(d, json_path):
