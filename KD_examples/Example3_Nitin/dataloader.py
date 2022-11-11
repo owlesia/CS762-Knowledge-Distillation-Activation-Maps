@@ -11,8 +11,8 @@ from torch.utils.data.sampler import SubsetRandomSampler
 import matplotlib.pyplot as plt
 
 
-mean=np.array([0.4914, 0.4822, 0.4465])
-std=np.array([0.2023, 0.1994, 0.2010])
+mean=np.array([0.485, 0.456, 0.406]) 
+std=np.array([0.229, 0.224, 0.225])
 
 def get_train_valid_loader(data_dir,
                            batch_size,
@@ -57,14 +57,15 @@ def get_train_valid_loader(data_dir,
 
     # define transforms
     valid_transform = transforms.Compose([
-            transforms.Resize((224,224)),
+            transforms.Resize((256,256)),
+            transforms.CenterCrop(224,224),
             transforms.ToTensor(),
             normalize,
     ])
     if augment:
         train_transform = transforms.Compose([
-            transforms.Resize((224,224)),
-            #transforms.RandomCrop((224,224), pad_if_needed=True, padding_mode='reflect'),
+            transforms.Resize((256,256)),
+            transforms.RandomCrop((224,224)),
             transforms.RandomHorizontalFlip(),
             transforms.ToTensor(),
             normalize,
@@ -154,7 +155,8 @@ def get_test_loader(data_dir,
 
     # define transform
     transform = transforms.Compose([
-        transforms.Resize((224,224)),
+        transforms.Resize((256,256)),
+        transforms.CenterCrop(224,224),
         transforms.ToTensor(),
         normalize,
     ])

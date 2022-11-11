@@ -4,11 +4,11 @@
     "alpha": 0.0,
     "temperature": 1,
     "learning_rate": 1e-2,
-    "num_epochs": 200,
-    "save_summary_steps": 20,
+    "num_epochs": 20,
+    "save_summary_steps": 2,
     "num_workers": 1,
-    "data_dir": "/home/jupyter/cs762/data",
+    "data_dir": "/Users/image/Downloads",
     "valid_size": 0.2,
-    "batch_size": 28,
+    "batch_size": 2,
     "augment": "True"
 }

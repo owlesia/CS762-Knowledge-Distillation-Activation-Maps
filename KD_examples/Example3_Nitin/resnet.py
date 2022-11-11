@@ -123,12 +123,8 @@ def ResNet152():
 def loss_fn(outputs, labels):
     """
     Compute the cross entropy loss given outputs and labels.
-
     Returns:
         loss (Variable): cross entropy loss for all images in the batch
-
-    Note: you may use a standard loss function from http://pytorch.org/docs/master/nn.html#loss-functions. This example
-          demonstrates how you can easily define a custom loss function.
     """
     return nn.CrossEntropyLoss()(outputs, labels)
 
