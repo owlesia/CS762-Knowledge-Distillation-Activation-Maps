@@ -122,8 +122,8 @@ def train_and_evaluate(model, train_dataloader, val_dataloader, optimizer,
 
     # Tensorboard logger
     tb_path = (os.path.join(model_dir, 'tb_logs'))
-    writer = SummaryWriter(tb_path, filename_suffix=params.model_version)
-    writer.add_text(params)
+    writer = SummaryWriter(tb_path)
+    writer.add_text('hyperparameters',params.get_content())
 
     for epoch in range(params.num_epochs):
 
@@ -279,8 +279,8 @@ def train_and_evaluate_kd(model, teacher_model, train_dataloader, val_dataloader
 
     # Tensorboard logger
     tb_path = (os.path.join(model_dir, 'tb_logs'))
-    writer = SummaryWriter(tb_path, filename_suffix=params.model_version)
-    writer.add_text(params)
+    writer = SummaryWriter(tb_path)
+    writer.add_text('hyperparameters',params.get_content())
 
     for epoch in range(params.num_epochs):
 

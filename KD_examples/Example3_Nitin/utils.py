@@ -33,9 +33,11 @@ class Params():
     """
 
     def __init__(self, json_path):
+        self.content = ""
         with open(json_path) as f:
             params = json.load(f)
             self.__dict__.update(params)
+            self.content = json.dumps(params)
 
     def save(self, json_path):
         with open(json_path, 'w') as f:
@@ -46,6 +48,9 @@ class Params():
         with open(json_path) as f:
             params = json.load(f)
             self.__dict__.update(params)
+
+    def get_content(self):
+        return self.content
 
     @property
     def dict(self):
