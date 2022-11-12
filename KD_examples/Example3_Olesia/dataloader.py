@@ -6,7 +6,7 @@ import torch
 import torchvision
 import numpy as np
 from torchvision import datasets
-from torchvision import transforms
+from torchvision import transforms as T
 from torch.utils.data.sampler import SubsetRandomSampler
 import matplotlib.pyplot as plt
 
@@ -53,27 +53,29 @@ def get_train_valid_loader(data_dir,
     error_msg = "[!] valid_size should be in the range [0, 1]."
     assert ((valid_size >= 0) and (valid_size <= 1)), error_msg
 
-    normalize = transforms.Normalize(mean,std)
+    normalize = T.Normalize(mean,std)
 
-    # define transforms
-    valid_transform = transforms.Compose([
-            transforms.Resize((256,256)),
-            transforms.CenterCrop((224,224)),
-            transforms.ToTensor(),
+    # define T
+    valid_transform = T.Compose([
+            T.Resize((256,256)),
+            T.CenterCrop((224,224)),
+            T.ToTensor(),
             normalize,
     ])
     if augment:
-        train_transform = transforms.Compose([
-            transforms.Resize((256,256)),
-            transforms.RandomCrop((224,224)),
-            transforms.RandomHorizontalFlip(),
-            transforms.ToTensor(),
+        train_transform = T.Compose([
+            T.Resize((256,256)),
+            T.RandomHorizontalFlip(),
+            T.RandomRotation(degrees=(0, 180)),
+            T.RandomPerspective(distortion_scale=0.6, p=1.0),
+            T.RandomCrop((224,224)),
+            T.ToTensor(),
             normalize,
         ])
     else:
-        train_transform = transforms.Compose([
-            transforms.Resize((224,224)),
-            transforms.ToTensor(),
+        train_transform = T.Compose([
+            T.Resize((224,224)),
+            T.ToTensor(),
             normalize,
         ])
 
@@ -151,13 +153,13 @@ def get_test_loader(data_dir,
     -------
     - data_loader: test set iterator.
     """
-    normalize = transforms.Normalize(mean,std)
+    normalize = T.Normalize(mean,std)
 
     # define transform
-    transform = transforms.Compose([
-        transforms.Resize((256,256)),
-        transforms.CenterCrop((224,224)),
-        transforms.ToTensor(),
+    transform = T.Compose([
+        T.Resize((256,256)),
+        T.CenterCrop((224,224)),
+        T.ToTensor(),
         normalize,
     ])
 
