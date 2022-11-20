@@ -8,7 +8,8 @@ import torch
 from torch.autograd import Variable
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--model_dir', default='experiments/base_model', help="Directory of params.json")
+parser.add_argument('--model_dir', default='experiments/base_model',
+                    help="Directory of params.json")
 parser.add_argument('--restore_file', default='best', help="name of the file in --model_dir \
                      containing weights to load")
 
@@ -36,10 +37,11 @@ def evaluate(model, loss_fn, dataloader, metrics, params):
 
         # move to GPU if available
         if params.cuda:
-            data_batch, labels_batch = data_batch.cuda(non_blocking=True), labels_batch.cuda(non_blocking=True)
+            data_batch, labels_batch = data_batch.cuda(
+                non_blocking=True), labels_batch.cuda(non_blocking=True)
         # fetch the next evaluation batch
         data_batch, labels_batch = Variable(data_batch), Variable(labels_batch)
-        
+
         # compute model output
         output_batch = model(data_batch)
         loss = loss_fn(output_batch, labels_batch)
@@ -55,8 +57,10 @@ def evaluate(model, loss_fn, dataloader, metrics, params):
         summ.append(summary_batch)
 
     # compute mean of all metrics in summary
-    metrics_mean = {metric:np.mean([x[metric] for x in summ]) for metric in summ[0]} 
-    metrics_string = " ; ".join("{}: {:05.3f}".format(k, v) for k, v in metrics_mean.items())
+    metrics_mean = {metric: np.mean([x[metric]
+                                    for x in summ]) for metric in summ[0]}
+    metrics_string = " ; ".join("{}: {:05.3f}".format(k, v)
+                                for k, v in metrics_mean.items())
     logging.info("- Eval metrics : " + metrics_string)
     return metrics_mean
 
@@ -67,7 +71,8 @@ Validation loss during KD mode would display '0' all the time.
 One can bring that info back by using the fetched teacher outputs during evaluation (refer to train.py)
 """
 
-def evaluate_kd(model, dataloader, metrics, params):
+
+def evaluate_kd(model, teacher_model, loss_fn_kd, dataloader, metrics, params):
     """Evaluate the model on `num_steps` batches.
 
     Args:
@@ -90,15 +95,25 @@ def evaluate_kd(model, dataloader, metrics, params):
 
         # move to GPU if available
         if params.cuda:
-            data_batch, labels_batch = data_batch.cuda(non_blocking=True), labels_batch.cuda(non_blocking=True)
+            data_batch, labels_batch = data_batch.cuda(
+                non_blocking=True), labels_batch.cuda(non_blocking=True)
+        
         # fetch the next evaluation batch
         data_batch, labels_batch = Variable(data_batch), Variable(labels_batch)
-        
+
         # compute model output
         output_batch = model(data_batch)
 
-        # loss = loss_fn_kd(output_batch, labels_batch, output_teacher_batch, params)
-        loss = 0.0  #force validation loss to zero to reduce computation time
+         # get one batch output from teacher_outputs list
+        with torch.no_grad():
+            output_teacher_batch = teacher_model(data_batch)
+        if params.cuda:
+            output_teacher_batch = output_teacher_batch.cuda(
+                non_blocking=True)
+
+        loss = loss_fn_kd(output_batch, labels_batch,
+                          output_teacher_batch, params)
+        # loss = 0.0  #force validation loss to zero to reduce computation time
 
         # extract data from torch Variable, move to cpu, convert to numpy arrays
         output_batch = output_batch.data.cpu().numpy()
@@ -112,7 +127,9 @@ def evaluate_kd(model, dataloader, metrics, params):
         summ.append(summary_batch)
 
     # compute mean of all metrics in summary
-    metrics_mean = {metric:np.mean([x[metric] for x in summ]) for metric in summ[0]} 
-    metrics_string = " ; ".join("{}: {:05.3f}".format(k, v) for k, v in metrics_mean.items())
+    metrics_mean = {metric: np.mean([x[metric]
+                                    for x in summ]) for metric in summ[0]}
+    metrics_string = " ; ".join("{}: {:05.3f}".format(k, v)
+                                for k, v in metrics_mean.items())
     logging.info("- Eval metrics : " + metrics_string)
     return metrics_mean

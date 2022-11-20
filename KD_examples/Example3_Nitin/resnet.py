@@ -3,7 +3,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 
-num_classes=37
+num_classes = 37
+
 
 def Resnet(model_name, pretrained=True):
     '''
@@ -11,7 +12,7 @@ def Resnet(model_name, pretrained=True):
     '''
     # Load Model
     model = torch.hub.load('pytorch/vision:v0.12.0',
-                           model_name, 
+                           model_name,
                            pretrained=pretrained)
 
     # Change the last linear layer as per our num_classes
@@ -23,7 +24,6 @@ def Resnet(model_name, pretrained=True):
         model.apply(initialize_weights)
 
     return model
-
 
 
 def loss_fn(outputs, labels):
@@ -44,8 +44,8 @@ def loss_fn_kd(outputs, labels, teacher_outputs, params):
     """
     alpha = params.alpha
     T = params.temperature
-    KD_loss = nn.KLDivLoss()(F.log_softmax(outputs/T, dim=1),
-                             F.softmax(teacher_outputs/T, dim=1)) * (alpha * T * T) + \
+    KD_loss = nn.KLDivLoss(reduction="batchmean")(F.log_softmax(outputs/T, dim=1),
+                                                  F.softmax(teacher_outputs/T, dim=1)) * (alpha * T * T) + \
         F.cross_entropy(outputs, labels) * (1. - alpha)
 
     return KD_loss

@@ -211,7 +211,6 @@ def train_kd(model, teacher_model, optimizer, loss_fn_kd, dataloader, metrics, p
             output_batch = model(train_batch)
 
             # get one batch output from teacher_outputs list
-
             with torch.no_grad():
                 output_teacher_batch = teacher_model(train_batch)
             if params.cuda:
@@ -253,6 +252,8 @@ def train_kd(model, teacher_model, optimizer, loss_fn_kd, dataloader, metrics, p
                                 for k, v in metrics_mean.items())
     logging.info("- Train metrics: " + metrics_string)
 
+    return metrics_mean
+
 
 def train_and_evaluate_kd(model, teacher_model, train_dataloader, val_dataloader, optimizer,
                           loss_fn_kd, metrics, params, model_dir, restore_file=None):
@@ -287,13 +288,14 @@ def train_and_evaluate_kd(model, teacher_model, train_dataloader, val_dataloader
         logging.info("\nEpoch {}/{}".format(epoch + 1, params.num_epochs))
 
         # compute number of batches in one epoch (one full pass over the training set)
-        train_kd(model, teacher_model, optimizer, loss_fn_kd, train_dataloader,
-                 metrics, params)
+        epoch_metrics = train_kd(model, teacher_model, optimizer, loss_fn_kd, train_dataloader,
+                                 metrics, params)
         scheduler.step()
 
         # Evaluate for one epoch on validation set
         logging.info("Evaluating on validation set")
-        val_metrics = evaluate_kd(model, val_dataloader, metrics, params)
+        val_metrics = evaluate_kd(
+            model, teacher_model, loss_fn_kd, val_dataloader, metrics, params)
 
         val_acc = val_metrics['accuracy']
         is_best = val_acc >= best_val_acc
@@ -320,11 +322,12 @@ def train_and_evaluate_kd(model, teacher_model, train_dataloader, val_dataloader
             model_dir, "metrics_val_last_weights.json")
         utils.save_dict_to_json(val_metrics, last_json_path)
 
-        info = {
-            'val accuracy': val_acc
-        }
+        # append to epoch_metrics
+        epoch_metrics['val_accuracy'] = val_metrics['accuracy']
+        epoch_metrics['val_loss'] = val_metrics['loss']
 
-        for tag, value in info.items():
+        # write to tensorboard
+        for tag, value in epoch_metrics.items():
             writer.add_scalar(tag, value, epoch+1)
 
     writer.flush()
@@ -348,6 +351,7 @@ if __name__ == '__main__':
     params.cuda = torch.cuda.is_available()
     if params.cuda:
         torch.cuda.manual_seed(230)
+        device = torch.device('cuda')
 
     # Set the logger
     utils.set_logger(os.path.join(args.model_dir, 'train.log'))
@@ -376,7 +380,7 @@ if __name__ == '__main__':
     model = resnet.Resnet(model_name=params.model_version,
                           pretrained=params.pretrained)
     if params.cuda:
-        model = model.to(torch.device('cuda'))
+        model = model.to(device)
 
     optimizer = optim.SGD(model.parameters(), lr=params.learning_rate,
                           momentum=0.9, weight_decay=5e-4)
@@ -391,7 +395,7 @@ if __name__ == '__main__':
                                           pretrained=False)
             teacher_checkpoint = params.teacher_checkpoint
             if params.cuda:
-                teacher_model = teacher_model.to(torch.device('cuda'))
+                teacher_model = teacher_model.to(device)
         else:
             raise AssertionError("Teacher model not found in params")
 
@@ -412,7 +416,8 @@ if __name__ == '__main__':
 
     # non-KD mode: regular training of the baseline ResNet-18/50 models
     else:
-        logging.info("Using non-KD mode: regular training of the baseline ResNet-18/50 models")
+        logging.info(
+            "Using non-KD mode: regular training of the baseline ResNet-18/50 models")
 
         # fetch loss function and metrics
         loss_fn = resnet.loss_fn
