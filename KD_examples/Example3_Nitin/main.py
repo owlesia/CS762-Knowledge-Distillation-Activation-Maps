@@ -376,7 +376,8 @@ if __name__ == '__main__':
     # Get Model
     model = resnet.Resnet(model_name=params.model_version,
                           pretrained=params.pretrained)
-    model = model.cuda() if params.cuda else model
+    if params.cuda:
+        model = model.to(torch.device('cuda'))
 
     optimizer = optim.SGD(model.parameters(), lr=params.learning_rate,
                           momentum=0.9, weight_decay=5e-4)
@@ -388,7 +389,8 @@ if __name__ == '__main__':
             teacher_model = resnet.Resnet(model_name=params.teacher,
                                           pretrained=False)
             teacher_checkpoint = params.teacher_checkpoint
-            teacher_model = teacher_model.cuda() if params.cuda else teacher_model
+            if params.cuda:
+                teacher_model = teacher_model.to(torch.device('cuda'))
         else:
             raise AssertionError("Teacher model not found in params")
 

@@ -10,7 +10,7 @@ def Resnet(model_name, pretrained=True):
     model_name : resnet50, resnet18 etc.
     '''
     # Load Model
-    model = torch.hub.load('pytorch/vision',
+    model = torch.hub.load('pytorch/vision:v0.12.0',
                            model_name, 
                            pretrained=pretrained)
 
