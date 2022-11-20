@@ -26,7 +26,7 @@ parser.add_argument('--model_dir', default='experiments/base_resnet18',
                     help="Directory containing params.json")
 parser.add_argument('--restore_file', default=None,
                     help="Optional, name of the file in --model_dir \
-                    containing weights to reload before training")  # 'best' or 'train'
+                    containing weights to reload before training")  # 'best' or 'last'
 
 
 def train(model, optimizer, loss_fn, dataloader, metrics, params):
@@ -348,10 +348,10 @@ if __name__ == '__main__':
     torch.manual_seed(230)
 
     # use GPU if available
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     params.cuda = torch.cuda.is_available()
     if params.cuda:
         torch.cuda.manual_seed(230)
-        device = torch.device('cuda')
 
     # Set the logger
     utils.set_logger(os.path.join(args.model_dir, 'train.log'))
@@ -379,8 +379,7 @@ if __name__ == '__main__':
     # Get Model
     model = resnet.Resnet(model_name=params.model_version,
                           pretrained=params.pretrained)
-    if params.cuda:
-        model = model.to(device)
+    model = model.to(device)
 
     optimizer = optim.SGD(model.parameters(), lr=params.learning_rate,
                           momentum=0.9, weight_decay=5e-4)
@@ -393,13 +392,11 @@ if __name__ == '__main__':
         if params.teacher is not "none":
             teacher_model = resnet.Resnet(model_name=params.teacher,
                                           pretrained=False)
+            teacher_model = teacher_model.to(device)                             
             teacher_checkpoint = params.teacher_checkpoint
-            if params.cuda:
-                teacher_model = teacher_model.to(device)
+            utils.load_checkpoint(teacher_checkpoint, teacher_model)
         else:
             raise AssertionError("Teacher model not found in params")
-
-        utils.load_checkpoint(teacher_checkpoint, teacher_model)
 
         # fetch loss function and metrics definition in model files
         loss_fn_kd = resnet.loss_fn_kd
@@ -411,6 +408,7 @@ if __name__ == '__main__':
             "Starting KD training for {} epoch(s)".format(params.num_epochs))
         logging.info(
             "First, loading the teacher model and computing its outputs...")
+        
         train_and_evaluate_kd(model, teacher_model, train_dl, dev_dl, optimizer, loss_fn_kd,
                               metrics, params, args.model_dir, args.restore_file)
 

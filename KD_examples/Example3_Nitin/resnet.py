@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
+import logging
 
 num_classes = 37
 
@@ -21,6 +22,7 @@ def Resnet(model_name, pretrained=True):
     if pretrained:
         torch.nn.init.xavier_uniform_(model.fc.weight)
     else:
+        logging.info("Initializing Weights")
         model.apply(initialize_weights)
 
     return model
@@ -70,6 +72,7 @@ metrics = {
 
 
 def initialize_weights(m):
+    
     if isinstance(m, nn.Conv2d):
         nn.init.kaiming_normal_(m.weight.data, nonlinearity='relu')
         if m.bias is not None:

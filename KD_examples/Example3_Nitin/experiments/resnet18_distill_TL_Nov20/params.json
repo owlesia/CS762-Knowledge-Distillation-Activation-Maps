@@ -1,5 +1,5 @@
 {
-    "pretrained": false,
+    "pretrained": true,
     "model_version": "resnet18",
     "distillation" : true,
     "teacher": "resnet50",
