@@ -1,20 +1,24 @@
-2022-11-20 01:10:33,581:INFO: Loading the datasets...
-2022-11-20 01:10:33,646:INFO: Dataloading done.
-2022-11-20 01:11:04,994:INFO: Loading the datasets...
-2022-11-20 01:11:05,059:INFO: Dataloading done.
-2022-11-20 01:12:09,543:INFO: Loading the datasets...
-2022-11-20 01:12:09,607:INFO: Dataloading done.
-2022-11-20 01:13:42,208:INFO: Loading the datasets...
-2022-11-20 01:13:42,272:INFO: Dataloading done.
-2022-11-20 01:16:48,935:INFO: Loading the datasets...
-2022-11-20 01:16:49,001:INFO: Dataloading done.
-2022-11-20 01:19:08,901:INFO: Loading the datasets...
-2022-11-20 01:19:08,965:INFO: Dataloading done.
-2022-11-20 01:33:05,154:INFO: Loading the datasets...
-2022-11-20 06:03:43,291:INFO: Loading the datasets...
-2022-11-20 06:03:43,356:INFO: Dataloading done.
-2022-11-20 06:18:35,306:INFO: Loading the datasets...
-2022-11-20 06:18:35,366:INFO: Dataloading done.
-2022-11-20 06:18:48,919:INFO: Starting training for 50 epoch(s)
-2022-11-20 06:18:48,922:INFO: 
-Epoch 1/50
+2022-11-20 07:18:09,222:INFO: Loading the datasets...
+2022-11-20 07:18:09,282:INFO: Dataloading done.
+2022-11-20 07:18:12,914:INFO: Using non-KD mode: regular training of the baseline ResNet-18/50 models
+2022-11-20 07:18:12,914:INFO: Starting training for 100 epoch(s)
+2022-11-20 07:18:12,916:INFO: 
+Epoch 1/100
+2022-11-20 07:18:40,369:INFO: - Train metrics: accuracy: 0.049 ; loss: 4.108
+2022-11-20 07:18:40,370:INFO: Evaluating on validation set
+2022-11-20 07:18:45,576:INFO: - Eval metrics : accuracy: 0.074 ; loss: 3.530
+2022-11-20 07:18:45,784:INFO: - Found new best accuracy
+2022-11-20 07:18:45,785:INFO: 
+Epoch 2/100
+2022-11-20 07:19:13,477:INFO: - Train metrics: accuracy: 0.112 ; loss: 3.393
+2022-11-20 07:19:13,478:INFO: Evaluating on validation set
+2022-11-20 07:19:18,686:INFO: - Eval metrics : accuracy: 0.198 ; loss: 2.870
+2022-11-20 07:19:19,448:INFO: - Found new best accuracy
+2022-11-20 07:19:19,525:INFO: 
+Epoch 3/100
+2022-11-20 07:19:46,901:INFO: - Train metrics: accuracy: 0.177 ; loss: 2.990
+2022-11-20 07:19:46,901:INFO: Evaluating on validation set
+2022-11-20 07:19:52,165:INFO: - Eval metrics : accuracy: 0.345 ; loss: 2.296
+2022-11-20 07:19:52,923:INFO: - Found new best accuracy
+2022-11-20 07:19:52,924:INFO: 
+Epoch 4/100

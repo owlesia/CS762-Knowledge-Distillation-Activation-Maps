@@ -174,9 +174,8 @@ def train_and_evaluate(model, train_dataloader, val_dataloader, optimizer,
     writer.flush()
     writer.close()
 
+
 # Defining train_kd & train_and_evaluate_kd functions
-
-
 def train_kd(model, teacher_model, optimizer, loss_fn_kd, dataloader, metrics, params):
     """Train the model on `num_steps` batches
 
@@ -384,6 +383,8 @@ if __name__ == '__main__':
     metrics = resnet.metrics
 
     if params.distillation:
+        logging.info("Using Distillation")
+
         # Specify the pre-trained teacher models for knowledge distillation
         if params.teacher is not "none":
             teacher_model = resnet.Resnet(model_name=params.teacher,
@@ -403,7 +404,7 @@ if __name__ == '__main__':
         logging.info(
             "Experiment - model version: {}".format(params.model_version))
         logging.info(
-            "Starting training for {} epoch(s)".format(params.num_epochs))
+            "Starting KD training for {} epoch(s)".format(params.num_epochs))
         logging.info(
             "First, loading the teacher model and computing its outputs...")
         train_and_evaluate_kd(model, teacher_model, train_dl, dev_dl, optimizer, loss_fn_kd,
@@ -411,6 +412,8 @@ if __name__ == '__main__':
 
     # non-KD mode: regular training of the baseline ResNet-18/50 models
     else:
+        logging.info("Using non-KD mode: regular training of the baseline ResNet-18/50 models")
+
         # fetch loss function and metrics
         loss_fn = resnet.loss_fn
 
