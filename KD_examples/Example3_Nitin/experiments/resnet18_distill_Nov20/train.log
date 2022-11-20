@@ -1,0 +1,16 @@
+2022-11-20 09:02:21,756:INFO: Loading the datasets...
+2022-11-20 09:02:21,813:INFO: Dataloading done.
+2022-11-20 09:02:25,439:INFO: Using Distillation
+2022-11-20 09:04:35,299:INFO: Loading the datasets...
+2022-11-20 09:04:35,357:INFO: Dataloading done.
+2022-11-20 09:04:38,949:INFO: Using Distillation
+2022-11-20 09:17:48,680:INFO: Loading the datasets...
+2022-11-20 09:17:48,740:INFO: Dataloading done.
+2022-11-20 09:17:52,412:INFO: Using Distillation
+2022-11-20 09:17:53,143:INFO: Experiment - model version: resnet18
+2022-11-20 09:17:53,144:INFO: Starting KD training for 200 epoch(s)
+2022-11-20 09:17:53,144:INFO: First, loading the teacher model and computing its outputs...
+2022-11-20 09:17:53,145:INFO: 
+Epoch 1/200
+2022-11-20 09:18:21,670:INFO: - Train metrics: accuracy: 0.036 ; loss: 0.419
+2022-11-20 09:18:21,671:INFO: Evaluating on validation set

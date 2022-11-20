@@ -1,6 +1,5 @@
 *.ipynb_checkpoints
-*.tar
-*.gz
 __pycache__
 *.gitignore*
 *.DS_Store*
+.gitignore
