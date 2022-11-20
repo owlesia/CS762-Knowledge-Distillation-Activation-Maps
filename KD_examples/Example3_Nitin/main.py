@@ -123,7 +123,7 @@ def train_and_evaluate(model, train_dataloader, val_dataloader, optimizer,
     # Tensorboard logger
     tb_path = (os.path.join(model_dir, 'tb_logs'))
     writer = SummaryWriter(tb_path)
-    writer.add_text('hyperparameters',params.get_content())
+    writer.add_text('hyperparameters', params.get_content())
 
     for epoch in range(params.num_epochs):
 
@@ -280,7 +280,7 @@ def train_and_evaluate_kd(model, teacher_model, train_dataloader, val_dataloader
     # Tensorboard logger
     tb_path = (os.path.join(model_dir, 'tb_logs'))
     writer = SummaryWriter(tb_path)
-    writer.add_text('hyperparameters',params.get_content())
+    writer.add_text('hyperparameters', params.get_content())
 
     for epoch in range(params.num_epochs):
 
@@ -373,27 +373,29 @@ if __name__ == '__main__':
 
     logging.info("Dataloading done.")
 
-    if "distill" in params.model_version:
+    # Get Model
+    model = resnet.Resnet(model_name=params.model_version,
+                          pretrained=params.pretrained)
+    model = model.cuda() if params.cuda else model
 
-        if params.model_version == 'resnet18_distill':
-            model = resnet.ResNet18().cuda() if params.cuda else resnet.ResNet18()
-            #model.apply(resnet.initialize_weights)
-            optimizer = optim.SGD(model.parameters(), lr=params.learning_rate,
-                                  momentum=0.9, weight_decay=5e-4)
-            # fetch loss function and metrics definition in model files
-            loss_fn_kd = resnet.loss_fn_kd
-            metrics = resnet.metrics
+    optimizer = optim.SGD(model.parameters(), lr=params.learning_rate,
+                          momentum=0.9, weight_decay=5e-4)
+    metrics = resnet.metrics
 
-        
-        #Specify the pre-trained teacher models for knowledge distillation
-        if params.teacher == "resnet50":
-            teacher_model = resnet.ResNet50()
-            teacher_checkpoint = 'experiments/base_resnet50/best.pth.tar'
+    if params.distillation:
+        # Specify the pre-trained teacher models for knowledge distillation
+        if params.teacher is not "none":
+            teacher_model = resnet.Resnet(model_name=params.teacher,
+                                          pretrained=False)
+            teacher_checkpoint = params.teacher_checkpoint
             teacher_model = teacher_model.cuda() if params.cuda else teacher_model
         else:
             raise AssertionError("Teacher model not found in params")
 
         utils.load_checkpoint(teacher_checkpoint, teacher_model)
+
+        # fetch loss function and metrics definition in model files
+        loss_fn_kd = resnet.loss_fn_kd
 
         # Train the model with KD
         logging.info(
@@ -407,25 +409,12 @@ if __name__ == '__main__':
 
     # non-KD mode: regular training of the baseline ResNet-18/50 models
     else:
-        if params.model_version == "resnet18":
-            model = resnet.ResNet18().cuda() if params.cuda else resnet.ResNet18()
-
-        elif params.model_version == "resnet50":
-            model = resnet.ResNet50().cuda() if params.cuda else resnet.ResNet50()
-
-        else:
-            raise AssertionError("Model not found in params")
-
-        #model.apply(resnet.initialize_weights)
-        optimizer = optim.SGD(model.parameters(), lr=params.learning_rate,
-                              momentum=0.9, weight_decay=5e-4)
         # fetch loss function and metrics
         loss_fn = resnet.loss_fn
-        metrics = resnet.metrics
 
         # Train the model
         logging.info(
             "Starting training for {} epoch(s)".format(params.num_epochs))
-        train_and_evaluate(model, train_dl, dev_dl, optimizer, 
-                            loss_fn, metrics, params,
-                            args.model_dir, args.restore_file)
+        train_and_evaluate(model, train_dl, dev_dl, optimizer,
+                           loss_fn, metrics, params,
+                           args.model_dir, args.restore_file)

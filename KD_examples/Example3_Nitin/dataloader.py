@@ -68,6 +68,10 @@ def get_train_valid_loader(data_dir,
             T.RandomHorizontalFlip(),
             T.RandomRotation(degrees=(0, 180)),
             T.RandomPerspective(distortion_scale=0.6, p=1.0),
+            T.RandomInvert(), # Olesia
+            #T.RandomAutocontrast(), # Olesia
+            T.ColorJitter(), # Olesia 2
+            #T.RandomEqualize(), # Olesia 2
             T.RandomCrop((224,224)),
             T.ToTensor(),
             normalize,
