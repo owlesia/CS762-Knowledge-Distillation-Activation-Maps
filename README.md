@@ -5,6 +5,11 @@
 3. Brainstorm Novel Way of Knowledge Distillation Considering Interpretability
 
 
+# Trained Models
+https://drive.google.com/drive/folders/1yo87WHUJs0eJLX1rWJcYSAIJ4oO7F_WA?usp=share_link
+
+
+
 # KD Resources
 
 - https://josehoras.github.io/knowledge-distillation/ <br />
