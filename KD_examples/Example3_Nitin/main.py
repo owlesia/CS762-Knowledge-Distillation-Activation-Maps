@@ -118,7 +118,7 @@ def train_and_evaluate(model, train_dataloader, val_dataloader, optimizer,
     best_val_acc = 0.0
 
     # learning rate schedulers
-    scheduler = StepLR(optimizer, step_size=100, gamma=0.1)
+    scheduler = StepLR(optimizer, step_size=params.scheduler_step_size, gamma=0.1)
 
     # Tensorboard logger
     tb_path = (os.path.join(model_dir, 'tb_logs'))
