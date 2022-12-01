@@ -1,0 +1,1046 @@
+2022-12-01 02:55:11,629:INFO: Loading the datasets...
+2022-12-01 02:55:11,691:INFO: Dataloading done.
+2022-12-01 02:55:11,858:INFO: Initializing Weights
+2022-12-01 02:55:15,628:INFO: Using Distillation
+2022-12-01 02:55:15,983:INFO: Initializing Weights
+2022-12-01 02:55:16,379:INFO: Experiment - model version: resnet18
+2022-12-01 02:55:16,379:INFO: Starting KD training for 200 epoch(s)
+2022-12-01 02:55:16,379:INFO: First, loading the teacher model and computing its outputs...
+2022-12-01 02:55:16,381:INFO: 
+Epoch 1/200
+2022-12-01 02:55:49,813:INFO: - Train metrics: accuracy: 0.023 ; loss: 7.553
+2022-12-01 02:55:49,813:INFO: Evaluating on validation set
+2022-12-01 02:55:55,618:INFO: - Eval metrics : accuracy: 0.039 ; loss: 9.896
+2022-12-01 02:55:55,913:INFO: - Found new best accuracy
+2022-12-01 02:55:55,914:INFO: 
+Epoch 2/200
+2022-12-01 02:56:27,611:INFO: - Train metrics: accuracy: 0.044 ; loss: 7.932
+2022-12-01 02:56:27,612:INFO: Evaluating on validation set
+2022-12-01 02:56:33,891:INFO: - Eval metrics : accuracy: 0.043 ; loss: 9.607
+2022-12-01 02:56:34,671:INFO: - Found new best accuracy
+2022-12-01 02:56:34,672:INFO: 
+Epoch 3/200
+2022-12-01 02:57:06,584:INFO: - Train metrics: accuracy: 0.047 ; loss: 7.381
+2022-12-01 02:57:06,584:INFO: Evaluating on validation set
+2022-12-01 02:57:12,392:INFO: - Eval metrics : accuracy: 0.033 ; loss: 10.059
+2022-12-01 02:57:12,798:INFO: 
+Epoch 4/200
+2022-12-01 02:57:44,062:INFO: - Train metrics: accuracy: 0.052 ; loss: 7.207
+2022-12-01 02:57:44,062:INFO: Evaluating on validation set
+2022-12-01 02:57:49,788:INFO: - Eval metrics : accuracy: 0.050 ; loss: 10.408
+2022-12-01 02:57:50,666:INFO: - Found new best accuracy
+2022-12-01 02:57:50,667:INFO: 
+Epoch 5/200
+2022-12-01 02:58:22,446:INFO: - Train metrics: accuracy: 0.076 ; loss: 7.136
+2022-12-01 02:58:22,446:INFO: Evaluating on validation set
+2022-12-01 02:58:28,131:INFO: - Eval metrics : accuracy: 0.073 ; loss: 10.218
+2022-12-01 02:58:28,924:INFO: - Found new best accuracy
+2022-12-01 02:58:28,925:INFO: 
+Epoch 6/200
+2022-12-01 02:59:00,241:INFO: - Train metrics: accuracy: 0.062 ; loss: 7.303
+2022-12-01 02:59:00,242:INFO: Evaluating on validation set
+2022-12-01 02:59:06,248:INFO: - Eval metrics : accuracy: 0.050 ; loss: 10.343
+2022-12-01 02:59:06,702:INFO: 
+Epoch 7/200
+2022-12-01 02:59:37,684:INFO: - Train metrics: accuracy: 0.081 ; loss: 6.903
+2022-12-01 02:59:37,684:INFO: Evaluating on validation set
+2022-12-01 02:59:43,327:INFO: - Eval metrics : accuracy: 0.066 ; loss: 10.090
+2022-12-01 02:59:43,744:INFO: 
+Epoch 8/200
+2022-12-01 03:00:15,109:INFO: - Train metrics: accuracy: 0.076 ; loss: 6.952
+2022-12-01 03:00:15,109:INFO: Evaluating on validation set
+2022-12-01 03:00:20,757:INFO: - Eval metrics : accuracy: 0.069 ; loss: 10.952
+2022-12-01 03:00:21,187:INFO: 
+Epoch 9/200
+2022-12-01 03:00:52,429:INFO: - Train metrics: accuracy: 0.081 ; loss: 6.908
+2022-12-01 03:00:52,430:INFO: Evaluating on validation set
+2022-12-01 03:00:58,110:INFO: - Eval metrics : accuracy: 0.107 ; loss: 9.105
+2022-12-01 03:00:58,926:INFO: - Found new best accuracy
+2022-12-01 03:00:58,927:INFO: 
+Epoch 10/200
+2022-12-01 03:01:29,911:INFO: - Train metrics: accuracy: 0.096 ; loss: 6.894
+2022-12-01 03:01:29,912:INFO: Evaluating on validation set
+2022-12-01 03:01:35,505:INFO: - Eval metrics : accuracy: 0.089 ; loss: 9.828
+2022-12-01 03:01:35,944:INFO: 
+Epoch 11/200
+2022-12-01 03:02:06,778:INFO: - Train metrics: accuracy: 0.104 ; loss: 6.672
+2022-12-01 03:02:06,779:INFO: Evaluating on validation set
+2022-12-01 03:02:12,450:INFO: - Eval metrics : accuracy: 0.092 ; loss: 9.966
+2022-12-01 03:02:12,853:INFO: 
+Epoch 12/200
+2022-12-01 03:02:43,369:INFO: - Train metrics: accuracy: 0.078 ; loss: 6.551
+2022-12-01 03:02:43,370:INFO: Evaluating on validation set
+2022-12-01 03:02:49,152:INFO: - Eval metrics : accuracy: 0.066 ; loss: 9.534
+2022-12-01 03:02:49,574:INFO: 
+Epoch 13/200
+2022-12-01 03:03:20,341:INFO: - Train metrics: accuracy: 0.130 ; loss: 6.381
+2022-12-01 03:03:20,342:INFO: Evaluating on validation set
+2022-12-01 03:03:25,935:INFO: - Eval metrics : accuracy: 0.112 ; loss: 9.005
+2022-12-01 03:03:26,803:INFO: - Found new best accuracy
+2022-12-01 03:03:26,804:INFO: 
+Epoch 14/200
+2022-12-01 03:03:57,581:INFO: - Train metrics: accuracy: 0.109 ; loss: 6.698
+2022-12-01 03:03:57,581:INFO: Evaluating on validation set
+2022-12-01 03:04:03,528:INFO: - Eval metrics : accuracy: 0.079 ; loss: 9.344
+2022-12-01 03:04:03,921:INFO: 
+Epoch 15/200
+2022-12-01 03:04:34,604:INFO: - Train metrics: accuracy: 0.107 ; loss: 6.471
+2022-12-01 03:04:34,604:INFO: Evaluating on validation set
+2022-12-01 03:04:40,179:INFO: - Eval metrics : accuracy: 0.122 ; loss: 9.233
+2022-12-01 03:04:40,951:INFO: - Found new best accuracy
+2022-12-01 03:04:40,952:INFO: 
+Epoch 16/200
+2022-12-01 03:05:11,584:INFO: - Train metrics: accuracy: 0.104 ; loss: 6.517
+2022-12-01 03:05:11,584:INFO: Evaluating on validation set
+2022-12-01 03:05:17,200:INFO: - Eval metrics : accuracy: 0.092 ; loss: 9.045
+2022-12-01 03:05:17,608:INFO: 
+Epoch 17/200
+2022-12-01 03:05:47,975:INFO: - Train metrics: accuracy: 0.133 ; loss: 6.547
+2022-12-01 03:05:47,976:INFO: Evaluating on validation set
+2022-12-01 03:05:53,545:INFO: - Eval metrics : accuracy: 0.123 ; loss: 9.680
+2022-12-01 03:05:54,322:INFO: - Found new best accuracy
+2022-12-01 03:05:54,323:INFO: 
+Epoch 18/200
+2022-12-01 03:06:25,313:INFO: - Train metrics: accuracy: 0.151 ; loss: 6.504
+2022-12-01 03:06:25,313:INFO: Evaluating on validation set
+2022-12-01 03:06:30,987:INFO: - Eval metrics : accuracy: 0.118 ; loss: 9.040
+2022-12-01 03:06:31,421:INFO: 
+Epoch 19/200
+2022-12-01 03:07:01,774:INFO: - Train metrics: accuracy: 0.146 ; loss: 6.026
+2022-12-01 03:07:01,775:INFO: Evaluating on validation set
+2022-12-01 03:07:07,334:INFO: - Eval metrics : accuracy: 0.131 ; loss: 8.844
+2022-12-01 03:07:08,102:INFO: - Found new best accuracy
+2022-12-01 03:07:08,103:INFO: 
+Epoch 20/200
+2022-12-01 03:07:38,915:INFO: - Train metrics: accuracy: 0.146 ; loss: 6.044
+2022-12-01 03:07:38,915:INFO: Evaluating on validation set
+2022-12-01 03:07:44,625:INFO: - Eval metrics : accuracy: 0.112 ; loss: 8.852
+2022-12-01 03:07:45,052:INFO: 
+Epoch 21/200
+2022-12-01 03:08:15,660:INFO: - Train metrics: accuracy: 0.135 ; loss: 6.088
+2022-12-01 03:08:15,660:INFO: Evaluating on validation set
+2022-12-01 03:08:21,272:INFO: - Eval metrics : accuracy: 0.124 ; loss: 8.735
+2022-12-01 03:08:21,679:INFO: 
+Epoch 22/200
+2022-12-01 03:08:52,147:INFO: - Train metrics: accuracy: 0.148 ; loss: 5.916
+2022-12-01 03:08:52,148:INFO: Evaluating on validation set
+2022-12-01 03:08:57,718:INFO: - Eval metrics : accuracy: 0.180 ; loss: 8.250
+2022-12-01 03:08:58,594:INFO: - Found new best accuracy
+2022-12-01 03:08:58,610:INFO: 
+Epoch 23/200
+2022-12-01 03:09:29,643:INFO: - Train metrics: accuracy: 0.148 ; loss: 6.025
+2022-12-01 03:09:29,643:INFO: Evaluating on validation set
+2022-12-01 03:09:35,154:INFO: - Eval metrics : accuracy: 0.144 ; loss: 8.624
+2022-12-01 03:09:35,584:INFO: 
+Epoch 24/200
+2022-12-01 03:10:06,865:INFO: - Train metrics: accuracy: 0.154 ; loss: 6.197
+2022-12-01 03:10:06,866:INFO: Evaluating on validation set
+2022-12-01 03:10:12,480:INFO: - Eval metrics : accuracy: 0.105 ; loss: 9.576
+2022-12-01 03:10:12,886:INFO: 
+Epoch 25/200
+2022-12-01 03:10:43,610:INFO: - Train metrics: accuracy: 0.146 ; loss: 6.060
+2022-12-01 03:10:43,610:INFO: Evaluating on validation set
+2022-12-01 03:10:49,225:INFO: - Eval metrics : accuracy: 0.119 ; loss: 9.583
+2022-12-01 03:10:49,644:INFO: 
+Epoch 26/200
+2022-12-01 03:11:20,750:INFO: - Train metrics: accuracy: 0.177 ; loss: 5.717
+2022-12-01 03:11:20,750:INFO: Evaluating on validation set
+2022-12-01 03:11:26,450:INFO: - Eval metrics : accuracy: 0.137 ; loss: 9.608
+2022-12-01 03:11:26,896:INFO: 
+Epoch 27/200
+2022-12-01 03:11:57,625:INFO: - Train metrics: accuracy: 0.159 ; loss: 5.710
+2022-12-01 03:11:57,626:INFO: Evaluating on validation set
+2022-12-01 03:12:03,609:INFO: - Eval metrics : accuracy: 0.114 ; loss: 10.313
+2022-12-01 03:12:04,014:INFO: 
+Epoch 28/200
+2022-12-01 03:12:34,584:INFO: - Train metrics: accuracy: 0.156 ; loss: 6.234
+2022-12-01 03:12:34,585:INFO: Evaluating on validation set
+2022-12-01 03:12:40,259:INFO: - Eval metrics : accuracy: 0.161 ; loss: 8.626
+2022-12-01 03:12:40,676:INFO: 
+Epoch 29/200
+2022-12-01 03:13:11,864:INFO: - Train metrics: accuracy: 0.219 ; loss: 6.005
+2022-12-01 03:13:11,865:INFO: Evaluating on validation set
+2022-12-01 03:13:17,629:INFO: - Eval metrics : accuracy: 0.136 ; loss: 10.034
+2022-12-01 03:13:18,034:INFO: 
+Epoch 30/200
+2022-12-01 03:13:49,254:INFO: - Train metrics: accuracy: 0.174 ; loss: 5.862
+2022-12-01 03:13:49,255:INFO: Evaluating on validation set
+2022-12-01 03:13:54,914:INFO: - Eval metrics : accuracy: 0.126 ; loss: 9.647
+2022-12-01 03:13:55,350:INFO: 
+Epoch 31/200
+2022-12-01 03:14:26,763:INFO: - Train metrics: accuracy: 0.221 ; loss: 5.694
+2022-12-01 03:14:26,764:INFO: Evaluating on validation set
+2022-12-01 03:14:32,520:INFO: - Eval metrics : accuracy: 0.120 ; loss: 9.325
+2022-12-01 03:14:32,954:INFO: 
+Epoch 32/200
+2022-12-01 03:15:04,173:INFO: - Train metrics: accuracy: 0.188 ; loss: 5.868
+2022-12-01 03:15:04,174:INFO: Evaluating on validation set
+2022-12-01 03:15:09,889:INFO: - Eval metrics : accuracy: 0.163 ; loss: 8.569
+2022-12-01 03:15:10,298:INFO: 
+Epoch 33/200
+2022-12-01 03:15:41,070:INFO: - Train metrics: accuracy: 0.177 ; loss: 5.519
+2022-12-01 03:15:41,070:INFO: Evaluating on validation set
+2022-12-01 03:15:46,805:INFO: - Eval metrics : accuracy: 0.137 ; loss: 8.877
+2022-12-01 03:15:47,186:INFO: 
+Epoch 34/200
+2022-12-01 03:16:18,933:INFO: - Train metrics: accuracy: 0.141 ; loss: 5.789
+2022-12-01 03:16:18,934:INFO: Evaluating on validation set
+2022-12-01 03:16:24,610:INFO: - Eval metrics : accuracy: 0.152 ; loss: 9.098
+2022-12-01 03:16:25,010:INFO: 
+Epoch 35/200
+2022-12-01 03:16:56,036:INFO: - Train metrics: accuracy: 0.193 ; loss: 5.663
+2022-12-01 03:16:56,036:INFO: Evaluating on validation set
+2022-12-01 03:17:01,774:INFO: - Eval metrics : accuracy: 0.135 ; loss: 9.210
+2022-12-01 03:17:02,228:INFO: 
+Epoch 36/200
+2022-12-01 03:17:33,257:INFO: - Train metrics: accuracy: 0.193 ; loss: 5.729
+2022-12-01 03:17:33,257:INFO: Evaluating on validation set
+2022-12-01 03:17:38,961:INFO: - Eval metrics : accuracy: 0.179 ; loss: 8.518
+2022-12-01 03:17:39,406:INFO: 
+Epoch 37/200
+2022-12-01 03:18:10,333:INFO: - Train metrics: accuracy: 0.203 ; loss: 5.446
+2022-12-01 03:18:10,333:INFO: Evaluating on validation set
+2022-12-01 03:18:16,111:INFO: - Eval metrics : accuracy: 0.188 ; loss: 8.987
+2022-12-01 03:18:16,984:INFO: - Found new best accuracy
+2022-12-01 03:18:16,985:INFO: 
+Epoch 38/200
+2022-12-01 03:18:48,077:INFO: - Train metrics: accuracy: 0.201 ; loss: 5.480
+2022-12-01 03:18:48,078:INFO: Evaluating on validation set
+2022-12-01 03:18:53,744:INFO: - Eval metrics : accuracy: 0.190 ; loss: 7.753
+2022-12-01 03:18:54,519:INFO: - Found new best accuracy
+2022-12-01 03:18:54,520:INFO: 
+Epoch 39/200
+2022-12-01 03:19:26,114:INFO: - Train metrics: accuracy: 0.208 ; loss: 5.171
+2022-12-01 03:19:26,114:INFO: Evaluating on validation set
+2022-12-01 03:19:31,924:INFO: - Eval metrics : accuracy: 0.144 ; loss: 8.504
+2022-12-01 03:19:32,348:INFO: 
+Epoch 40/200
+2022-12-01 03:20:03,674:INFO: - Train metrics: accuracy: 0.216 ; loss: 5.492
+2022-12-01 03:20:03,675:INFO: Evaluating on validation set
+2022-12-01 03:20:09,390:INFO: - Eval metrics : accuracy: 0.184 ; loss: 8.113
+2022-12-01 03:20:09,824:INFO: 
+Epoch 41/200
+2022-12-01 03:20:40,667:INFO: - Train metrics: accuracy: 0.247 ; loss: 5.414
+2022-12-01 03:20:40,668:INFO: Evaluating on validation set
+2022-12-01 03:20:46,423:INFO: - Eval metrics : accuracy: 0.201 ; loss: 7.732
+2022-12-01 03:20:47,295:INFO: - Found new best accuracy
+2022-12-01 03:20:47,296:INFO: 
+Epoch 42/200
+2022-12-01 03:21:18,559:INFO: - Train metrics: accuracy: 0.193 ; loss: 5.235
+2022-12-01 03:21:18,559:INFO: Evaluating on validation set
+2022-12-01 03:21:24,417:INFO: - Eval metrics : accuracy: 0.172 ; loss: 8.246
+2022-12-01 03:21:24,860:INFO: 
+Epoch 43/200
+2022-12-01 03:21:55,990:INFO: - Train metrics: accuracy: 0.250 ; loss: 5.040
+2022-12-01 03:21:55,990:INFO: Evaluating on validation set
+2022-12-01 03:22:01,849:INFO: - Eval metrics : accuracy: 0.200 ; loss: 8.275
+2022-12-01 03:22:02,288:INFO: 
+Epoch 44/200
+2022-12-01 03:22:33,460:INFO: - Train metrics: accuracy: 0.255 ; loss: 5.106
+2022-12-01 03:22:33,460:INFO: Evaluating on validation set
+2022-12-01 03:22:39,181:INFO: - Eval metrics : accuracy: 0.151 ; loss: 8.925
+2022-12-01 03:22:39,606:INFO: 
+Epoch 45/200
+2022-12-01 03:23:11,056:INFO: - Train metrics: accuracy: 0.242 ; loss: 5.183
+2022-12-01 03:23:11,057:INFO: Evaluating on validation set
+2022-12-01 03:23:16,868:INFO: - Eval metrics : accuracy: 0.194 ; loss: 8.067
+2022-12-01 03:23:17,311:INFO: 
+Epoch 46/200
+2022-12-01 03:23:48,793:INFO: - Train metrics: accuracy: 0.245 ; loss: 4.993
+2022-12-01 03:23:48,794:INFO: Evaluating on validation set
+2022-12-01 03:23:54,509:INFO: - Eval metrics : accuracy: 0.220 ; loss: 7.817
+2022-12-01 03:23:55,342:INFO: - Found new best accuracy
+2022-12-01 03:23:55,343:INFO: 
+Epoch 47/200
+2022-12-01 03:24:26,696:INFO: - Train metrics: accuracy: 0.240 ; loss: 5.021
+2022-12-01 03:24:26,697:INFO: Evaluating on validation set
+2022-12-01 03:24:32,467:INFO: - Eval metrics : accuracy: 0.146 ; loss: 9.811
+2022-12-01 03:24:32,905:INFO: 
+Epoch 48/200
+2022-12-01 03:25:04,129:INFO: - Train metrics: accuracy: 0.221 ; loss: 5.210
+2022-12-01 03:25:04,129:INFO: Evaluating on validation set
+2022-12-01 03:25:09,806:INFO: - Eval metrics : accuracy: 0.220 ; loss: 7.628
+2022-12-01 03:25:10,682:INFO: - Found new best accuracy
+2022-12-01 03:25:10,683:INFO: 
+Epoch 49/200
+2022-12-01 03:25:41,182:INFO: - Train metrics: accuracy: 0.299 ; loss: 5.055
+2022-12-01 03:25:41,182:INFO: Evaluating on validation set
+2022-12-01 03:25:46,756:INFO: - Eval metrics : accuracy: 0.194 ; loss: 8.299
+2022-12-01 03:25:47,123:INFO: 
+Epoch 50/200
+2022-12-01 03:26:18,215:INFO: - Train metrics: accuracy: 0.237 ; loss: 5.110
+2022-12-01 03:26:18,215:INFO: Evaluating on validation set
+2022-12-01 03:26:23,951:INFO: - Eval metrics : accuracy: 0.210 ; loss: 8.390
+2022-12-01 03:26:24,380:INFO: 
+Epoch 51/200
+2022-12-01 03:26:54,801:INFO: - Train metrics: accuracy: 0.255 ; loss: 5.085
+2022-12-01 03:26:54,802:INFO: Evaluating on validation set
+2022-12-01 03:27:00,442:INFO: - Eval metrics : accuracy: 0.206 ; loss: 8.547
+2022-12-01 03:27:00,846:INFO: 
+Epoch 52/200
+2022-12-01 03:27:31,693:INFO: - Train metrics: accuracy: 0.255 ; loss: 5.111
+2022-12-01 03:27:31,694:INFO: Evaluating on validation set
+2022-12-01 03:27:37,334:INFO: - Eval metrics : accuracy: 0.201 ; loss: 8.173
+2022-12-01 03:27:37,774:INFO: 
+Epoch 53/200
+2022-12-01 03:28:08,908:INFO: - Train metrics: accuracy: 0.305 ; loss: 4.704
+2022-12-01 03:28:08,909:INFO: Evaluating on validation set
+2022-12-01 03:28:14,883:INFO: - Eval metrics : accuracy: 0.179 ; loss: 9.535
+2022-12-01 03:28:15,308:INFO: 
+Epoch 54/200
+2022-12-01 03:28:46,272:INFO: - Train metrics: accuracy: 0.250 ; loss: 5.030
+2022-12-01 03:28:46,273:INFO: Evaluating on validation set
+2022-12-01 03:28:51,989:INFO: - Eval metrics : accuracy: 0.172 ; loss: 8.511
+2022-12-01 03:28:52,544:INFO: 
+Epoch 55/200
+2022-12-01 03:29:24,046:INFO: - Train metrics: accuracy: 0.273 ; loss: 4.704
+2022-12-01 03:29:24,047:INFO: Evaluating on validation set
+2022-12-01 03:29:29,741:INFO: - Eval metrics : accuracy: 0.158 ; loss: 9.016
+2022-12-01 03:29:30,142:INFO: 
+Epoch 56/200
+2022-12-01 03:30:01,024:INFO: - Train metrics: accuracy: 0.279 ; loss: 4.789
+2022-12-01 03:30:01,025:INFO: Evaluating on validation set
+2022-12-01 03:30:06,950:INFO: - Eval metrics : accuracy: 0.196 ; loss: 8.502
+2022-12-01 03:30:07,380:INFO: 
+Epoch 57/200
+2022-12-01 03:30:38,225:INFO: - Train metrics: accuracy: 0.281 ; loss: 4.721
+2022-12-01 03:30:38,226:INFO: Evaluating on validation set
+2022-12-01 03:30:43,822:INFO: - Eval metrics : accuracy: 0.215 ; loss: 7.433
+2022-12-01 03:30:44,249:INFO: 
+Epoch 58/200
+2022-12-01 03:31:15,053:INFO: - Train metrics: accuracy: 0.286 ; loss: 4.562
+2022-12-01 03:31:15,053:INFO: Evaluating on validation set
+2022-12-01 03:31:20,629:INFO: - Eval metrics : accuracy: 0.195 ; loss: 8.263
+2022-12-01 03:31:21,003:INFO: 
+Epoch 59/200
+2022-12-01 03:31:51,337:INFO: - Train metrics: accuracy: 0.302 ; loss: 4.709
+2022-12-01 03:31:51,337:INFO: Evaluating on validation set
+2022-12-01 03:31:56,994:INFO: - Eval metrics : accuracy: 0.232 ; loss: 7.864
+2022-12-01 03:31:57,870:INFO: - Found new best accuracy
+2022-12-01 03:31:57,872:INFO: 
+Epoch 60/200
+2022-12-01 03:32:28,489:INFO: - Train metrics: accuracy: 0.312 ; loss: 4.668
+2022-12-01 03:32:28,489:INFO: Evaluating on validation set
+2022-12-01 03:32:34,085:INFO: - Eval metrics : accuracy: 0.253 ; loss: 7.696
+2022-12-01 03:32:34,858:INFO: - Found new best accuracy
+2022-12-01 03:32:34,859:INFO: 
+Epoch 61/200
+2022-12-01 03:33:05,152:INFO: - Train metrics: accuracy: 0.305 ; loss: 4.545
+2022-12-01 03:33:05,153:INFO: Evaluating on validation set
+2022-12-01 03:33:10,680:INFO: - Eval metrics : accuracy: 0.228 ; loss: 7.866
+2022-12-01 03:33:11,044:INFO: 
+Epoch 62/200
+2022-12-01 03:33:41,166:INFO: - Train metrics: accuracy: 0.286 ; loss: 4.573
+2022-12-01 03:33:41,166:INFO: Evaluating on validation set
+2022-12-01 03:33:46,717:INFO: - Eval metrics : accuracy: 0.214 ; loss: 8.457
+2022-12-01 03:33:47,139:INFO: 
+Epoch 63/200
+2022-12-01 03:34:17,743:INFO: - Train metrics: accuracy: 0.266 ; loss: 4.721
+2022-12-01 03:34:17,744:INFO: Evaluating on validation set
+2022-12-01 03:34:23,280:INFO: - Eval metrics : accuracy: 0.240 ; loss: 7.924
+2022-12-01 03:34:23,703:INFO: 
+Epoch 64/200
+2022-12-01 03:34:53,722:INFO: - Train metrics: accuracy: 0.341 ; loss: 4.621
+2022-12-01 03:34:53,722:INFO: Evaluating on validation set
+2022-12-01 03:34:59,203:INFO: - Eval metrics : accuracy: 0.224 ; loss: 7.842
+2022-12-01 03:34:59,612:INFO: 
+Epoch 65/200
+2022-12-01 03:35:29,706:INFO: - Train metrics: accuracy: 0.299 ; loss: 4.546
+2022-12-01 03:35:29,707:INFO: Evaluating on validation set
+2022-12-01 03:35:35,226:INFO: - Eval metrics : accuracy: 0.232 ; loss: 7.274
+2022-12-01 03:35:35,633:INFO: 
+Epoch 66/200
+2022-12-01 03:36:06,079:INFO: - Train metrics: accuracy: 0.297 ; loss: 4.807
+2022-12-01 03:36:06,079:INFO: Evaluating on validation set
+2022-12-01 03:36:11,598:INFO: - Eval metrics : accuracy: 0.244 ; loss: 8.250
+2022-12-01 03:36:12,033:INFO: 
+Epoch 67/200
+2022-12-01 03:36:42,448:INFO: - Train metrics: accuracy: 0.336 ; loss: 4.635
+2022-12-01 03:36:42,449:INFO: Evaluating on validation set
+2022-12-01 03:36:48,043:INFO: - Eval metrics : accuracy: 0.240 ; loss: 7.489
+2022-12-01 03:36:48,448:INFO: 
+Epoch 68/200
+2022-12-01 03:37:19,145:INFO: - Train metrics: accuracy: 0.323 ; loss: 4.543
+2022-12-01 03:37:19,145:INFO: Evaluating on validation set
+2022-12-01 03:37:24,740:INFO: - Eval metrics : accuracy: 0.224 ; loss: 8.082
+2022-12-01 03:37:25,147:INFO: 
+Epoch 69/200
+2022-12-01 03:37:54,890:INFO: - Train metrics: accuracy: 0.380 ; loss: 4.277
+2022-12-01 03:37:54,891:INFO: Evaluating on validation set
+2022-12-01 03:38:00,543:INFO: - Eval metrics : accuracy: 0.225 ; loss: 7.815
+2022-12-01 03:38:00,969:INFO: 
+Epoch 70/200
+2022-12-01 03:38:31,359:INFO: - Train metrics: accuracy: 0.326 ; loss: 4.317
+2022-12-01 03:38:31,360:INFO: Evaluating on validation set
+2022-12-01 03:38:37,075:INFO: - Eval metrics : accuracy: 0.222 ; loss: 8.426
+2022-12-01 03:38:37,475:INFO: 
+Epoch 71/200
+2022-12-01 03:39:08,106:INFO: - Train metrics: accuracy: 0.341 ; loss: 4.355
+2022-12-01 03:39:08,107:INFO: Evaluating on validation set
+2022-12-01 03:39:13,718:INFO: - Eval metrics : accuracy: 0.211 ; loss: 8.068
+2022-12-01 03:39:14,158:INFO: 
+Epoch 72/200
+2022-12-01 03:39:44,715:INFO: - Train metrics: accuracy: 0.328 ; loss: 4.250
+2022-12-01 03:39:44,716:INFO: Evaluating on validation set
+2022-12-01 03:39:50,375:INFO: - Eval metrics : accuracy: 0.235 ; loss: 7.590
+2022-12-01 03:39:50,804:INFO: 
+Epoch 73/200
+2022-12-01 03:40:21,535:INFO: - Train metrics: accuracy: 0.320 ; loss: 4.273
+2022-12-01 03:40:21,536:INFO: Evaluating on validation set
+2022-12-01 03:40:27,117:INFO: - Eval metrics : accuracy: 0.163 ; loss: 8.362
+2022-12-01 03:40:27,528:INFO: 
+Epoch 74/200
+2022-12-01 03:40:57,610:INFO: - Train metrics: accuracy: 0.352 ; loss: 4.240
+2022-12-01 03:40:57,611:INFO: Evaluating on validation set
+2022-12-01 03:41:03,545:INFO: - Eval metrics : accuracy: 0.224 ; loss: 7.634
+2022-12-01 03:41:03,966:INFO: 
+Epoch 75/200
+2022-12-01 03:41:34,757:INFO: - Train metrics: accuracy: 0.372 ; loss: 4.281
+2022-12-01 03:41:34,758:INFO: Evaluating on validation set
+2022-12-01 03:41:40,423:INFO: - Eval metrics : accuracy: 0.261 ; loss: 8.017
+2022-12-01 03:41:41,292:INFO: - Found new best accuracy
+2022-12-01 03:41:41,293:INFO: 
+Epoch 76/200
+2022-12-01 03:42:11,799:INFO: - Train metrics: accuracy: 0.310 ; loss: 4.310
+2022-12-01 03:42:11,799:INFO: Evaluating on validation set
+2022-12-01 03:42:17,445:INFO: - Eval metrics : accuracy: 0.237 ; loss: 7.398
+2022-12-01 03:42:17,854:INFO: 
+Epoch 77/200
+2022-12-01 03:42:48,516:INFO: - Train metrics: accuracy: 0.344 ; loss: 4.303
+2022-12-01 03:42:48,516:INFO: Evaluating on validation set
+2022-12-01 03:42:54,129:INFO: - Eval metrics : accuracy: 0.190 ; loss: 8.659
+2022-12-01 03:42:54,505:INFO: 
+Epoch 78/200
+2022-12-01 03:43:25,037:INFO: - Train metrics: accuracy: 0.357 ; loss: 4.076
+2022-12-01 03:43:25,038:INFO: Evaluating on validation set
+2022-12-01 03:43:30,687:INFO: - Eval metrics : accuracy: 0.243 ; loss: 7.603
+2022-12-01 03:43:31,129:INFO: 
+Epoch 79/200
+2022-12-01 03:44:01,810:INFO: - Train metrics: accuracy: 0.331 ; loss: 4.255
+2022-12-01 03:44:01,811:INFO: Evaluating on validation set
+2022-12-01 03:44:07,549:INFO: - Eval metrics : accuracy: 0.291 ; loss: 6.946
+2022-12-01 03:44:08,319:INFO: - Found new best accuracy
+2022-12-01 03:44:08,320:INFO: 
+Epoch 80/200
+2022-12-01 03:44:38,673:INFO: - Train metrics: accuracy: 0.336 ; loss: 4.220
+2022-12-01 03:44:38,674:INFO: Evaluating on validation set
+2022-12-01 03:44:44,372:INFO: - Eval metrics : accuracy: 0.231 ; loss: 7.371
+2022-12-01 03:44:44,768:INFO: 
+Epoch 81/200
+2022-12-01 03:45:15,440:INFO: - Train metrics: accuracy: 0.388 ; loss: 4.087
+2022-12-01 03:45:15,441:INFO: Evaluating on validation set
+2022-12-01 03:45:21,234:INFO: - Eval metrics : accuracy: 0.235 ; loss: 7.086
+2022-12-01 03:45:21,665:INFO: 
+Epoch 82/200
+2022-12-01 03:45:51,966:INFO: - Train metrics: accuracy: 0.367 ; loss: 4.024
+2022-12-01 03:45:51,966:INFO: Evaluating on validation set
+2022-12-01 03:45:57,509:INFO: - Eval metrics : accuracy: 0.309 ; loss: 6.468
+2022-12-01 03:45:58,282:INFO: - Found new best accuracy
+2022-12-01 03:45:58,283:INFO: 
+Epoch 83/200
+2022-12-01 03:46:28,642:INFO: - Train metrics: accuracy: 0.357 ; loss: 4.093
+2022-12-01 03:46:28,642:INFO: Evaluating on validation set
+2022-12-01 03:46:34,161:INFO: - Eval metrics : accuracy: 0.286 ; loss: 6.836
+2022-12-01 03:46:34,584:INFO: 
+Epoch 84/200
+2022-12-01 03:47:05,065:INFO: - Train metrics: accuracy: 0.432 ; loss: 3.873
+2022-12-01 03:47:05,066:INFO: Evaluating on validation set
+2022-12-01 03:47:10,631:INFO: - Eval metrics : accuracy: 0.312 ; loss: 6.935
+2022-12-01 03:47:11,419:INFO: - Found new best accuracy
+2022-12-01 03:47:11,420:INFO: 
+Epoch 85/200
+2022-12-01 03:47:42,091:INFO: - Train metrics: accuracy: 0.357 ; loss: 3.910
+2022-12-01 03:47:42,092:INFO: Evaluating on validation set
+2022-12-01 03:47:47,868:INFO: - Eval metrics : accuracy: 0.209 ; loss: 8.246
+2022-12-01 03:47:48,297:INFO: 
+Epoch 86/200
+2022-12-01 03:48:19,587:INFO: - Train metrics: accuracy: 0.398 ; loss: 3.874
+2022-12-01 03:48:19,588:INFO: Evaluating on validation set
+2022-12-01 03:48:25,164:INFO: - Eval metrics : accuracy: 0.243 ; loss: 7.305
+2022-12-01 03:48:25,602:INFO: 
+Epoch 87/200
+2022-12-01 03:48:55,799:INFO: - Train metrics: accuracy: 0.346 ; loss: 4.108
+2022-12-01 03:48:55,799:INFO: Evaluating on validation set
+2022-12-01 03:49:01,402:INFO: - Eval metrics : accuracy: 0.273 ; loss: 7.612
+2022-12-01 03:49:01,906:INFO: 
+Epoch 88/200
+2022-12-01 03:49:32,453:INFO: - Train metrics: accuracy: 0.383 ; loss: 3.976
+2022-12-01 03:49:32,454:INFO: Evaluating on validation set
+2022-12-01 03:49:38,059:INFO: - Eval metrics : accuracy: 0.214 ; loss: 8.284
+2022-12-01 03:49:38,479:INFO: 
+Epoch 89/200
+2022-12-01 03:50:09,048:INFO: - Train metrics: accuracy: 0.438 ; loss: 3.554
+2022-12-01 03:50:09,048:INFO: Evaluating on validation set
+2022-12-01 03:50:14,761:INFO: - Eval metrics : accuracy: 0.237 ; loss: 7.755
+2022-12-01 03:50:15,159:INFO: 
+Epoch 90/200
+2022-12-01 03:50:45,195:INFO: - Train metrics: accuracy: 0.385 ; loss: 3.973
+2022-12-01 03:50:45,195:INFO: Evaluating on validation set
+2022-12-01 03:50:50,728:INFO: - Eval metrics : accuracy: 0.259 ; loss: 6.845
+2022-12-01 03:50:51,149:INFO: 
+Epoch 91/200
+2022-12-01 03:51:21,450:INFO: - Train metrics: accuracy: 0.432 ; loss: 3.880
+2022-12-01 03:51:21,451:INFO: Evaluating on validation set
+2022-12-01 03:51:26,921:INFO: - Eval metrics : accuracy: 0.288 ; loss: 6.698
+2022-12-01 03:51:27,313:INFO: 
+Epoch 92/200
+2022-12-01 03:51:57,096:INFO: - Train metrics: accuracy: 0.378 ; loss: 3.914
+2022-12-01 03:51:57,097:INFO: Evaluating on validation set
+2022-12-01 03:52:02,963:INFO: - Eval metrics : accuracy: 0.263 ; loss: 7.071
+2022-12-01 03:52:03,367:INFO: 
+Epoch 93/200
+2022-12-01 03:52:33,438:INFO: - Train metrics: accuracy: 0.380 ; loss: 3.672
+2022-12-01 03:52:33,438:INFO: Evaluating on validation set
+2022-12-01 03:52:39,055:INFO: - Eval metrics : accuracy: 0.269 ; loss: 7.485
+2022-12-01 03:52:39,478:INFO: 
+Epoch 94/200
+2022-12-01 03:53:10,355:INFO: - Train metrics: accuracy: 0.424 ; loss: 3.706
+2022-12-01 03:53:10,356:INFO: Evaluating on validation set
+2022-12-01 03:53:16,098:INFO: - Eval metrics : accuracy: 0.270 ; loss: 6.893
+2022-12-01 03:53:16,499:INFO: 
+Epoch 95/200
+2022-12-01 03:53:46,650:INFO: - Train metrics: accuracy: 0.430 ; loss: 3.633
+2022-12-01 03:53:46,651:INFO: Evaluating on validation set
+2022-12-01 03:53:52,207:INFO: - Eval metrics : accuracy: 0.290 ; loss: 6.763
+2022-12-01 03:53:52,595:INFO: 
+Epoch 96/200
+2022-12-01 03:54:22,881:INFO: - Train metrics: accuracy: 0.414 ; loss: 3.507
+2022-12-01 03:54:22,882:INFO: Evaluating on validation set
+2022-12-01 03:54:28,457:INFO: - Eval metrics : accuracy: 0.316 ; loss: 6.515
+2022-12-01 03:54:29,329:INFO: - Found new best accuracy
+2022-12-01 03:54:29,330:INFO: 
+Epoch 97/200
+2022-12-01 03:54:59,250:INFO: - Train metrics: accuracy: 0.411 ; loss: 3.687
+2022-12-01 03:54:59,251:INFO: Evaluating on validation set
+2022-12-01 03:55:04,986:INFO: - Eval metrics : accuracy: 0.311 ; loss: 6.570
+2022-12-01 03:55:05,409:INFO: 
+Epoch 98/200
+2022-12-01 03:55:35,293:INFO: - Train metrics: accuracy: 0.375 ; loss: 3.736
+2022-12-01 03:55:35,294:INFO: Evaluating on validation set
+2022-12-01 03:55:40,832:INFO: - Eval metrics : accuracy: 0.250 ; loss: 7.347
+2022-12-01 03:55:41,241:INFO: 
+Epoch 99/200
+2022-12-01 03:56:11,345:INFO: - Train metrics: accuracy: 0.445 ; loss: 3.577
+2022-12-01 03:56:11,345:INFO: Evaluating on validation set
+2022-12-01 03:56:17,012:INFO: - Eval metrics : accuracy: 0.259 ; loss: 7.321
+2022-12-01 03:56:17,431:INFO: 
+Epoch 100/200
+2022-12-01 03:56:47,111:INFO: - Train metrics: accuracy: 0.424 ; loss: 3.537
+2022-12-01 03:56:47,112:INFO: Evaluating on validation set
+2022-12-01 03:56:52,611:INFO: - Eval metrics : accuracy: 0.273 ; loss: 6.934
+2022-12-01 03:56:53,034:INFO: 
+Epoch 101/200
+2022-12-01 03:57:23,051:INFO: - Train metrics: accuracy: 0.424 ; loss: 3.406
+2022-12-01 03:57:23,051:INFO: Evaluating on validation set
+2022-12-01 03:57:28,580:INFO: - Eval metrics : accuracy: 0.398 ; loss: 5.384
+2022-12-01 03:57:29,450:INFO: - Found new best accuracy
+2022-12-01 03:57:29,451:INFO: 
+Epoch 102/200
+2022-12-01 03:57:59,326:INFO: - Train metrics: accuracy: 0.453 ; loss: 3.219
+2022-12-01 03:57:59,326:INFO: Evaluating on validation set
+2022-12-01 03:58:05,212:INFO: - Eval metrics : accuracy: 0.388 ; loss: 5.370
+2022-12-01 03:58:05,641:INFO: 
+Epoch 103/200
+2022-12-01 03:58:35,711:INFO: - Train metrics: accuracy: 0.456 ; loss: 3.309
+2022-12-01 03:58:35,711:INFO: Evaluating on validation set
+2022-12-01 03:58:41,254:INFO: - Eval metrics : accuracy: 0.401 ; loss: 5.259
+2022-12-01 03:58:42,018:INFO: - Found new best accuracy
+2022-12-01 03:58:42,019:INFO: 
+Epoch 104/200
+2022-12-01 03:59:11,915:INFO: - Train metrics: accuracy: 0.518 ; loss: 2.886
+2022-12-01 03:59:11,915:INFO: Evaluating on validation set
+2022-12-01 03:59:17,396:INFO: - Eval metrics : accuracy: 0.405 ; loss: 5.299
+2022-12-01 03:59:18,267:INFO: - Found new best accuracy
+2022-12-01 03:59:18,268:INFO: 
+Epoch 105/200
+2022-12-01 03:59:47,733:INFO: - Train metrics: accuracy: 0.474 ; loss: 3.155
+2022-12-01 03:59:47,734:INFO: Evaluating on validation set
+2022-12-01 03:59:53,142:INFO: - Eval metrics : accuracy: 0.425 ; loss: 5.115
+2022-12-01 03:59:53,936:INFO: - Found new best accuracy
+2022-12-01 03:59:53,937:INFO: 
+Epoch 106/200
+2022-12-01 04:00:23,798:INFO: - Train metrics: accuracy: 0.521 ; loss: 2.956
+2022-12-01 04:00:23,798:INFO: Evaluating on validation set
+2022-12-01 04:00:29,352:INFO: - Eval metrics : accuracy: 0.409 ; loss: 5.203
+2022-12-01 04:00:29,778:INFO: 
+Epoch 107/200
+2022-12-01 04:00:59,157:INFO: - Train metrics: accuracy: 0.443 ; loss: 3.143
+2022-12-01 04:00:59,158:INFO: Evaluating on validation set
+2022-12-01 04:01:05,011:INFO: - Eval metrics : accuracy: 0.389 ; loss: 5.331
+2022-12-01 04:01:05,403:INFO: 
+Epoch 108/200
+2022-12-01 04:01:34,838:INFO: - Train metrics: accuracy: 0.521 ; loss: 3.345
+2022-12-01 04:01:34,838:INFO: Evaluating on validation set
+2022-12-01 04:01:40,371:INFO: - Eval metrics : accuracy: 0.422 ; loss: 5.036
+2022-12-01 04:01:40,801:INFO: 
+Epoch 109/200
+2022-12-01 04:02:10,483:INFO: - Train metrics: accuracy: 0.505 ; loss: 2.921
+2022-12-01 04:02:10,484:INFO: Evaluating on validation set
+2022-12-01 04:02:15,919:INFO: - Eval metrics : accuracy: 0.413 ; loss: 5.223
+2022-12-01 04:02:16,325:INFO: 
+Epoch 110/200
+2022-12-01 04:02:45,738:INFO: - Train metrics: accuracy: 0.523 ; loss: 2.980
+2022-12-01 04:02:45,739:INFO: Evaluating on validation set
+2022-12-01 04:02:51,209:INFO: - Eval metrics : accuracy: 0.422 ; loss: 5.158
+2022-12-01 04:02:51,618:INFO: 
+Epoch 111/200
+2022-12-01 04:03:21,738:INFO: - Train metrics: accuracy: 0.500 ; loss: 2.867
+2022-12-01 04:03:21,738:INFO: Evaluating on validation set
+2022-12-01 04:03:27,132:INFO: - Eval metrics : accuracy: 0.418 ; loss: 5.108
+2022-12-01 04:03:27,537:INFO: 
+Epoch 112/200
+2022-12-01 04:03:57,383:INFO: - Train metrics: accuracy: 0.560 ; loss: 2.816
+2022-12-01 04:03:57,384:INFO: Evaluating on validation set
+2022-12-01 04:04:03,161:INFO: - Eval metrics : accuracy: 0.426 ; loss: 5.073
+2022-12-01 04:04:03,968:INFO: - Found new best accuracy
+2022-12-01 04:04:03,969:INFO: 
+Epoch 113/200
+2022-12-01 04:04:33,408:INFO: - Train metrics: accuracy: 0.521 ; loss: 2.906
+2022-12-01 04:04:33,408:INFO: Evaluating on validation set
+2022-12-01 04:04:38,802:INFO: - Eval metrics : accuracy: 0.422 ; loss: 5.011
+2022-12-01 04:04:39,227:INFO: 
+Epoch 114/200
+2022-12-01 04:05:09,051:INFO: - Train metrics: accuracy: 0.505 ; loss: 2.848
+2022-12-01 04:05:09,051:INFO: Evaluating on validation set
+2022-12-01 04:05:14,605:INFO: - Eval metrics : accuracy: 0.427 ; loss: 5.133
+2022-12-01 04:05:15,471:INFO: - Found new best accuracy
+2022-12-01 04:05:15,472:INFO: 
+Epoch 115/200
+2022-12-01 04:05:44,919:INFO: - Train metrics: accuracy: 0.542 ; loss: 2.853
+2022-12-01 04:05:44,919:INFO: Evaluating on validation set
+2022-12-01 04:05:50,338:INFO: - Eval metrics : accuracy: 0.416 ; loss: 5.190
+2022-12-01 04:05:50,727:INFO: 
+Epoch 116/200
+2022-12-01 04:06:20,694:INFO: - Train metrics: accuracy: 0.549 ; loss: 2.863
+2022-12-01 04:06:20,695:INFO: Evaluating on validation set
+2022-12-01 04:06:26,099:INFO: - Eval metrics : accuracy: 0.431 ; loss: 4.967
+2022-12-01 04:06:26,874:INFO: - Found new best accuracy
+2022-12-01 04:06:26,875:INFO: 
+Epoch 117/200
+2022-12-01 04:06:56,370:INFO: - Train metrics: accuracy: 0.510 ; loss: 2.981
+2022-12-01 04:06:56,370:INFO: Evaluating on validation set
+2022-12-01 04:07:01,895:INFO: - Eval metrics : accuracy: 0.428 ; loss: 5.120
+2022-12-01 04:07:02,310:INFO: 
+Epoch 118/200
+2022-12-01 04:07:31,483:INFO: - Train metrics: accuracy: 0.544 ; loss: 2.831
+2022-12-01 04:07:31,484:INFO: Evaluating on validation set
+2022-12-01 04:07:36,984:INFO: - Eval metrics : accuracy: 0.426 ; loss: 5.028
+2022-12-01 04:07:37,400:INFO: 
+Epoch 119/200
+2022-12-01 04:08:07,604:INFO: - Train metrics: accuracy: 0.555 ; loss: 2.814
+2022-12-01 04:08:07,605:INFO: Evaluating on validation set
+2022-12-01 04:08:13,239:INFO: - Eval metrics : accuracy: 0.435 ; loss: 4.961
+2022-12-01 04:08:14,110:INFO: - Found new best accuracy
+2022-12-01 04:08:14,112:INFO: 
+Epoch 120/200
+2022-12-01 04:08:44,917:INFO: - Train metrics: accuracy: 0.536 ; loss: 2.941
+2022-12-01 04:08:44,917:INFO: Evaluating on validation set
+2022-12-01 04:08:50,646:INFO: - Eval metrics : accuracy: 0.433 ; loss: 5.050
+2022-12-01 04:08:51,081:INFO: 
+Epoch 121/200
+2022-12-01 04:09:21,967:INFO: - Train metrics: accuracy: 0.542 ; loss: 2.743
+2022-12-01 04:09:21,967:INFO: Evaluating on validation set
+2022-12-01 04:09:27,516:INFO: - Eval metrics : accuracy: 0.436 ; loss: 5.035
+2022-12-01 04:09:28,286:INFO: - Found new best accuracy
+2022-12-01 04:09:28,288:INFO: 
+Epoch 122/200
+2022-12-01 04:09:58,073:INFO: - Train metrics: accuracy: 0.521 ; loss: 2.668
+2022-12-01 04:09:58,074:INFO: Evaluating on validation set
+2022-12-01 04:10:03,816:INFO: - Eval metrics : accuracy: 0.412 ; loss: 5.214
+2022-12-01 04:10:04,237:INFO: 
+Epoch 123/200
+2022-12-01 04:10:33,884:INFO: - Train metrics: accuracy: 0.523 ; loss: 2.730
+2022-12-01 04:10:33,885:INFO: Evaluating on validation set
+2022-12-01 04:10:39,255:INFO: - Eval metrics : accuracy: 0.439 ; loss: 4.896
+2022-12-01 04:10:40,123:INFO: - Found new best accuracy
+2022-12-01 04:10:40,124:INFO: 
+Epoch 124/200
+2022-12-01 04:11:09,830:INFO: - Train metrics: accuracy: 0.557 ; loss: 2.722
+2022-12-01 04:11:09,831:INFO: Evaluating on validation set
+2022-12-01 04:11:15,404:INFO: - Eval metrics : accuracy: 0.443 ; loss: 4.942
+2022-12-01 04:11:16,170:INFO: - Found new best accuracy
+2022-12-01 04:11:16,171:INFO: 
+Epoch 125/200
+2022-12-01 04:11:45,816:INFO: - Train metrics: accuracy: 0.549 ; loss: 2.820
+2022-12-01 04:11:45,816:INFO: Evaluating on validation set
+2022-12-01 04:11:51,297:INFO: - Eval metrics : accuracy: 0.439 ; loss: 4.892
+2022-12-01 04:11:51,726:INFO: 
+Epoch 126/200
+2022-12-01 04:12:21,724:INFO: - Train metrics: accuracy: 0.508 ; loss: 2.686
+2022-12-01 04:12:21,725:INFO: Evaluating on validation set
+2022-12-01 04:12:27,235:INFO: - Eval metrics : accuracy: 0.433 ; loss: 4.942
+2022-12-01 04:12:27,628:INFO: 
+Epoch 127/200
+2022-12-01 04:12:56,652:INFO: - Train metrics: accuracy: 0.539 ; loss: 2.840
+2022-12-01 04:12:56,652:INFO: Evaluating on validation set
+2022-12-01 04:13:02,326:INFO: - Eval metrics : accuracy: 0.427 ; loss: 4.936
+2022-12-01 04:13:02,748:INFO: 
+Epoch 128/200
+2022-12-01 04:13:32,071:INFO: - Train metrics: accuracy: 0.523 ; loss: 2.763
+2022-12-01 04:13:32,072:INFO: Evaluating on validation set
+2022-12-01 04:13:37,596:INFO: - Eval metrics : accuracy: 0.435 ; loss: 4.969
+2022-12-01 04:13:38,027:INFO: 
+Epoch 129/200
+2022-12-01 04:14:07,601:INFO: - Train metrics: accuracy: 0.542 ; loss: 2.548
+2022-12-01 04:14:07,602:INFO: Evaluating on validation set
+2022-12-01 04:14:13,082:INFO: - Eval metrics : accuracy: 0.442 ; loss: 5.041
+2022-12-01 04:14:13,485:INFO: 
+Epoch 130/200
+2022-12-01 04:14:42,604:INFO: - Train metrics: accuracy: 0.487 ; loss: 2.797
+2022-12-01 04:14:42,604:INFO: Evaluating on validation set
+2022-12-01 04:14:47,990:INFO: - Eval metrics : accuracy: 0.432 ; loss: 5.252
+2022-12-01 04:14:48,395:INFO: 
+Epoch 131/200
+2022-12-01 04:15:18,026:INFO: - Train metrics: accuracy: 0.552 ; loss: 2.715
+2022-12-01 04:15:18,027:INFO: Evaluating on validation set
+2022-12-01 04:15:23,536:INFO: - Eval metrics : accuracy: 0.416 ; loss: 5.026
+2022-12-01 04:15:23,966:INFO: 
+Epoch 132/200
+2022-12-01 04:15:53,298:INFO: - Train metrics: accuracy: 0.578 ; loss: 2.727
+2022-12-01 04:15:53,298:INFO: Evaluating on validation set
+2022-12-01 04:15:58,767:INFO: - Eval metrics : accuracy: 0.433 ; loss: 4.919
+2022-12-01 04:15:59,196:INFO: 
+Epoch 133/200
+2022-12-01 04:16:28,996:INFO: - Train metrics: accuracy: 0.513 ; loss: 2.865
+2022-12-01 04:16:28,996:INFO: Evaluating on validation set
+2022-12-01 04:16:34,450:INFO: - Eval metrics : accuracy: 0.438 ; loss: 4.919
+2022-12-01 04:16:34,883:INFO: 
+Epoch 134/200
+2022-12-01 04:17:04,680:INFO: - Train metrics: accuracy: 0.565 ; loss: 2.572
+2022-12-01 04:17:04,681:INFO: Evaluating on validation set
+2022-12-01 04:17:10,163:INFO: - Eval metrics : accuracy: 0.434 ; loss: 4.977
+2022-12-01 04:17:10,520:INFO: 
+Epoch 135/200
+2022-12-01 04:17:40,185:INFO: - Train metrics: accuracy: 0.552 ; loss: 2.888
+2022-12-01 04:17:40,186:INFO: Evaluating on validation set
+2022-12-01 04:17:45,712:INFO: - Eval metrics : accuracy: 0.422 ; loss: 4.872
+2022-12-01 04:17:46,112:INFO: 
+Epoch 136/200
+2022-12-01 04:18:16,105:INFO: - Train metrics: accuracy: 0.523 ; loss: 2.744
+2022-12-01 04:18:16,105:INFO: Evaluating on validation set
+2022-12-01 04:18:21,726:INFO: - Eval metrics : accuracy: 0.425 ; loss: 4.923
+2022-12-01 04:18:22,141:INFO: 
+Epoch 137/200
+2022-12-01 04:18:51,672:INFO: - Train metrics: accuracy: 0.534 ; loss: 2.792
+2022-12-01 04:18:51,673:INFO: Evaluating on validation set
+2022-12-01 04:18:57,166:INFO: - Eval metrics : accuracy: 0.440 ; loss: 4.945
+2022-12-01 04:18:57,593:INFO: 
+Epoch 138/200
+2022-12-01 04:19:27,591:INFO: - Train metrics: accuracy: 0.586 ; loss: 2.585
+2022-12-01 04:19:27,591:INFO: Evaluating on validation set
+2022-12-01 04:19:32,981:INFO: - Eval metrics : accuracy: 0.445 ; loss: 4.912
+2022-12-01 04:19:33,848:INFO: - Found new best accuracy
+2022-12-01 04:19:33,849:INFO: 
+Epoch 139/200
+2022-12-01 04:20:03,592:INFO: - Train metrics: accuracy: 0.484 ; loss: 2.680
+2022-12-01 04:20:03,592:INFO: Evaluating on validation set
+2022-12-01 04:20:09,032:INFO: - Eval metrics : accuracy: 0.431 ; loss: 4.922
+2022-12-01 04:20:09,453:INFO: 
+Epoch 140/200
+2022-12-01 04:20:38,678:INFO: - Train metrics: accuracy: 0.542 ; loss: 2.787
+2022-12-01 04:20:38,679:INFO: Evaluating on validation set
+2022-12-01 04:20:44,185:INFO: - Eval metrics : accuracy: 0.443 ; loss: 4.926
+2022-12-01 04:20:44,605:INFO: 
+Epoch 141/200
+2022-12-01 04:21:14,779:INFO: - Train metrics: accuracy: 0.581 ; loss: 2.578
+2022-12-01 04:21:14,779:INFO: Evaluating on validation set
+2022-12-01 04:21:20,241:INFO: - Eval metrics : accuracy: 0.437 ; loss: 5.152
+2022-12-01 04:21:20,619:INFO: 
+Epoch 142/200
+2022-12-01 04:21:50,671:INFO: - Train metrics: accuracy: 0.552 ; loss: 2.677
+2022-12-01 04:21:50,671:INFO: Evaluating on validation set
+2022-12-01 04:21:56,410:INFO: - Eval metrics : accuracy: 0.429 ; loss: 4.903
+2022-12-01 04:21:56,782:INFO: 
+Epoch 143/200
+2022-12-01 04:22:26,625:INFO: - Train metrics: accuracy: 0.555 ; loss: 2.716
+2022-12-01 04:22:26,625:INFO: Evaluating on validation set
+2022-12-01 04:22:32,125:INFO: - Eval metrics : accuracy: 0.427 ; loss: 4.967
+2022-12-01 04:22:32,531:INFO: 
+Epoch 144/200
+2022-12-01 04:23:04,578:INFO: - Train metrics: accuracy: 0.573 ; loss: 2.600
+2022-12-01 04:23:04,579:INFO: Evaluating on validation set
+2022-12-01 04:23:10,144:INFO: - Eval metrics : accuracy: 0.431 ; loss: 4.975
+2022-12-01 04:23:10,556:INFO: 
+Epoch 145/200
+2022-12-01 04:23:41,009:INFO: - Train metrics: accuracy: 0.544 ; loss: 2.657
+2022-12-01 04:23:41,010:INFO: Evaluating on validation set
+2022-12-01 04:23:46,611:INFO: - Eval metrics : accuracy: 0.434 ; loss: 4.987
+2022-12-01 04:23:47,024:INFO: 
+Epoch 146/200
+2022-12-01 04:24:16,933:INFO: - Train metrics: accuracy: 0.552 ; loss: 2.930
+2022-12-01 04:24:16,933:INFO: Evaluating on validation set
+2022-12-01 04:24:22,573:INFO: - Eval metrics : accuracy: 0.436 ; loss: 4.981
+2022-12-01 04:24:22,957:INFO: 
+Epoch 147/200
+2022-12-01 04:24:53,235:INFO: - Train metrics: accuracy: 0.568 ; loss: 2.601
+2022-12-01 04:24:53,236:INFO: Evaluating on validation set
+2022-12-01 04:24:58,912:INFO: - Eval metrics : accuracy: 0.417 ; loss: 5.298
+2022-12-01 04:24:59,333:INFO: 
+Epoch 148/200
+2022-12-01 04:25:29,847:INFO: - Train metrics: accuracy: 0.521 ; loss: 2.743
+2022-12-01 04:25:29,847:INFO: Evaluating on validation set
+2022-12-01 04:25:35,459:INFO: - Eval metrics : accuracy: 0.431 ; loss: 4.904
+2022-12-01 04:25:35,845:INFO: 
+Epoch 149/200
+2022-12-01 04:26:07,076:INFO: - Train metrics: accuracy: 0.555 ; loss: 2.619
+2022-12-01 04:26:07,076:INFO: Evaluating on validation set
+2022-12-01 04:26:12,609:INFO: - Eval metrics : accuracy: 0.402 ; loss: 5.077
+2022-12-01 04:26:13,026:INFO: 
+Epoch 150/200
+2022-12-01 04:26:43,206:INFO: - Train metrics: accuracy: 0.586 ; loss: 2.631
+2022-12-01 04:26:43,207:INFO: Evaluating on validation set
+2022-12-01 04:26:48,852:INFO: - Eval metrics : accuracy: 0.432 ; loss: 5.090
+2022-12-01 04:26:49,254:INFO: 
+Epoch 151/200
+2022-12-01 04:27:19,310:INFO: - Train metrics: accuracy: 0.562 ; loss: 2.521
+2022-12-01 04:27:19,311:INFO: Evaluating on validation set
+2022-12-01 04:27:24,942:INFO: - Eval metrics : accuracy: 0.448 ; loss: 4.994
+2022-12-01 04:27:25,711:INFO: - Found new best accuracy
+2022-12-01 04:27:25,713:INFO: 
+Epoch 152/200
+2022-12-01 04:27:55,349:INFO: - Train metrics: accuracy: 0.521 ; loss: 2.768
+2022-12-01 04:27:55,349:INFO: Evaluating on validation set
+2022-12-01 04:28:01,017:INFO: - Eval metrics : accuracy: 0.439 ; loss: 4.913
+2022-12-01 04:28:01,345:INFO: 
+Epoch 153/200
+2022-12-01 04:28:31,842:INFO: - Train metrics: accuracy: 0.562 ; loss: 2.615
+2022-12-01 04:28:31,842:INFO: Evaluating on validation set
+2022-12-01 04:28:37,330:INFO: - Eval metrics : accuracy: 0.446 ; loss: 4.910
+2022-12-01 04:28:37,754:INFO: 
+Epoch 154/200
+2022-12-01 04:29:07,788:INFO: - Train metrics: accuracy: 0.544 ; loss: 2.659
+2022-12-01 04:29:07,788:INFO: Evaluating on validation set
+2022-12-01 04:29:13,378:INFO: - Eval metrics : accuracy: 0.435 ; loss: 5.072
+2022-12-01 04:29:13,787:INFO: 
+Epoch 155/200
+2022-12-01 04:29:43,867:INFO: - Train metrics: accuracy: 0.568 ; loss: 2.417
+2022-12-01 04:29:43,867:INFO: Evaluating on validation set
+2022-12-01 04:29:49,461:INFO: - Eval metrics : accuracy: 0.431 ; loss: 4.972
+2022-12-01 04:29:49,871:INFO: 
+Epoch 156/200
+2022-12-01 04:30:19,930:INFO: - Train metrics: accuracy: 0.596 ; loss: 2.564
+2022-12-01 04:30:19,931:INFO: Evaluating on validation set
+2022-12-01 04:30:25,448:INFO: - Eval metrics : accuracy: 0.445 ; loss: 4.892
+2022-12-01 04:30:25,871:INFO: 
+Epoch 157/200
+2022-12-01 04:30:56,363:INFO: - Train metrics: accuracy: 0.599 ; loss: 2.496
+2022-12-01 04:30:56,363:INFO: Evaluating on validation set
+2022-12-01 04:31:02,359:INFO: - Eval metrics : accuracy: 0.417 ; loss: 4.984
+2022-12-01 04:31:02,806:INFO: 
+Epoch 158/200
+2022-12-01 04:31:33,116:INFO: - Train metrics: accuracy: 0.594 ; loss: 2.585
+2022-12-01 04:31:33,116:INFO: Evaluating on validation set
+2022-12-01 04:31:38,640:INFO: - Eval metrics : accuracy: 0.413 ; loss: 5.129
+2022-12-01 04:31:39,080:INFO: 
+Epoch 159/200
+2022-12-01 04:32:09,235:INFO: - Train metrics: accuracy: 0.581 ; loss: 2.652
+2022-12-01 04:32:09,235:INFO: Evaluating on validation set
+2022-12-01 04:32:14,916:INFO: - Eval metrics : accuracy: 0.396 ; loss: 5.249
+2022-12-01 04:32:15,295:INFO: 
+Epoch 160/200
+2022-12-01 04:32:45,905:INFO: - Train metrics: accuracy: 0.596 ; loss: 2.496
+2022-12-01 04:32:45,905:INFO: Evaluating on validation set
+2022-12-01 04:32:51,449:INFO: - Eval metrics : accuracy: 0.457 ; loss: 4.878
+2022-12-01 04:32:52,234:INFO: - Found new best accuracy
+2022-12-01 04:32:52,235:INFO: 
+Epoch 161/200
+2022-12-01 04:33:24,911:INFO: - Train metrics: accuracy: 0.594 ; loss: 2.602
+2022-12-01 04:33:24,911:INFO: Evaluating on validation set
+2022-12-01 04:33:30,491:INFO: - Eval metrics : accuracy: 0.436 ; loss: 5.007
+2022-12-01 04:33:30,921:INFO: 
+Epoch 162/200
+2022-12-01 04:34:00,738:INFO: - Train metrics: accuracy: 0.562 ; loss: 2.618
+2022-12-01 04:34:00,739:INFO: Evaluating on validation set
+2022-12-01 04:34:06,623:INFO: - Eval metrics : accuracy: 0.463 ; loss: 4.774
+2022-12-01 04:34:07,396:INFO: - Found new best accuracy
+2022-12-01 04:34:07,397:INFO: 
+Epoch 163/200
+2022-12-01 04:34:37,291:INFO: - Train metrics: accuracy: 0.596 ; loss: 2.595
+2022-12-01 04:34:37,291:INFO: Evaluating on validation set
+2022-12-01 04:34:42,706:INFO: - Eval metrics : accuracy: 0.431 ; loss: 4.870
+2022-12-01 04:34:43,067:INFO: 
+Epoch 164/200
+2022-12-01 04:35:13,089:INFO: - Train metrics: accuracy: 0.521 ; loss: 2.664
+2022-12-01 04:35:13,089:INFO: Evaluating on validation set
+2022-12-01 04:35:18,825:INFO: - Eval metrics : accuracy: 0.440 ; loss: 4.886
+2022-12-01 04:35:19,248:INFO: 
+Epoch 165/200
+2022-12-01 04:35:49,342:INFO: - Train metrics: accuracy: 0.539 ; loss: 2.499
+2022-12-01 04:35:49,343:INFO: Evaluating on validation set
+2022-12-01 04:35:54,904:INFO: - Eval metrics : accuracy: 0.452 ; loss: 4.871
+2022-12-01 04:35:55,342:INFO: 
+Epoch 166/200
+2022-12-01 04:36:25,576:INFO: - Train metrics: accuracy: 0.609 ; loss: 2.495
+2022-12-01 04:36:25,577:INFO: Evaluating on validation set
+2022-12-01 04:36:31,149:INFO: - Eval metrics : accuracy: 0.440 ; loss: 4.938
+2022-12-01 04:36:31,557:INFO: 
+Epoch 167/200
+2022-12-01 04:37:01,776:INFO: - Train metrics: accuracy: 0.573 ; loss: 2.603
+2022-12-01 04:37:01,776:INFO: Evaluating on validation set
+2022-12-01 04:37:07,289:INFO: - Eval metrics : accuracy: 0.442 ; loss: 5.135
+2022-12-01 04:37:07,692:INFO: 
+Epoch 168/200
+2022-12-01 04:37:37,581:INFO: - Train metrics: accuracy: 0.562 ; loss: 2.522
+2022-12-01 04:37:37,581:INFO: Evaluating on validation set
+2022-12-01 04:37:43,442:INFO: - Eval metrics : accuracy: 0.430 ; loss: 4.833
+2022-12-01 04:37:43,872:INFO: 
+Epoch 169/200
+2022-12-01 04:38:14,086:INFO: - Train metrics: accuracy: 0.578 ; loss: 2.486
+2022-12-01 04:38:14,086:INFO: Evaluating on validation set
+2022-12-01 04:38:19,802:INFO: - Eval metrics : accuracy: 0.410 ; loss: 5.061
+2022-12-01 04:38:20,212:INFO: 
+Epoch 170/200
+2022-12-01 04:38:49,867:INFO: - Train metrics: accuracy: 0.648 ; loss: 2.561
+2022-12-01 04:38:49,867:INFO: Evaluating on validation set
+2022-12-01 04:38:55,445:INFO: - Eval metrics : accuracy: 0.447 ; loss: 5.080
+2022-12-01 04:38:55,883:INFO: 
+Epoch 171/200
+2022-12-01 04:39:26,301:INFO: - Train metrics: accuracy: 0.557 ; loss: 2.501
+2022-12-01 04:39:26,302:INFO: Evaluating on validation set
+2022-12-01 04:39:31,856:INFO: - Eval metrics : accuracy: 0.459 ; loss: 4.845
+2022-12-01 04:39:32,292:INFO: 
+Epoch 172/200
+2022-12-01 04:40:01,876:INFO: - Train metrics: accuracy: 0.594 ; loss: 2.505
+2022-12-01 04:40:01,877:INFO: Evaluating on validation set
+2022-12-01 04:40:07,447:INFO: - Eval metrics : accuracy: 0.423 ; loss: 5.170
+2022-12-01 04:40:07,881:INFO: 
+Epoch 173/200
+2022-12-01 04:40:37,999:INFO: - Train metrics: accuracy: 0.573 ; loss: 2.534
+2022-12-01 04:40:38,000:INFO: Evaluating on validation set
+2022-12-01 04:40:43,671:INFO: - Eval metrics : accuracy: 0.466 ; loss: 4.747
+2022-12-01 04:40:44,511:INFO: - Found new best accuracy
+2022-12-01 04:40:44,513:INFO: 
+Epoch 174/200
+2022-12-01 04:41:14,844:INFO: - Train metrics: accuracy: 0.594 ; loss: 2.552
+2022-12-01 04:41:14,845:INFO: Evaluating on validation set
+2022-12-01 04:41:20,453:INFO: - Eval metrics : accuracy: 0.448 ; loss: 4.950
+2022-12-01 04:41:20,852:INFO: 
+Epoch 175/200
+2022-12-01 04:41:50,916:INFO: - Train metrics: accuracy: 0.586 ; loss: 2.577
+2022-12-01 04:41:50,916:INFO: Evaluating on validation set
+2022-12-01 04:41:56,518:INFO: - Eval metrics : accuracy: 0.450 ; loss: 4.896
+2022-12-01 04:41:56,945:INFO: 
+Epoch 176/200
+2022-12-01 04:42:27,049:INFO: - Train metrics: accuracy: 0.607 ; loss: 2.628
+2022-12-01 04:42:27,049:INFO: Evaluating on validation set
+2022-12-01 04:42:32,629:INFO: - Eval metrics : accuracy: 0.445 ; loss: 4.882
+2022-12-01 04:42:33,052:INFO: 
+Epoch 177/200
+2022-12-01 04:43:02,760:INFO: - Train metrics: accuracy: 0.518 ; loss: 2.576
+2022-12-01 04:43:02,760:INFO: Evaluating on validation set
+2022-12-01 04:43:08,442:INFO: - Eval metrics : accuracy: 0.447 ; loss: 4.933
+2022-12-01 04:43:08,868:INFO: 
+Epoch 178/200
+2022-12-01 04:43:38,986:INFO: - Train metrics: accuracy: 0.570 ; loss: 2.503
+2022-12-01 04:43:38,986:INFO: Evaluating on validation set
+2022-12-01 04:43:44,446:INFO: - Eval metrics : accuracy: 0.457 ; loss: 4.794
+2022-12-01 04:43:44,862:INFO: 
+Epoch 179/200
+2022-12-01 04:44:14,516:INFO: - Train metrics: accuracy: 0.594 ; loss: 2.471
+2022-12-01 04:44:14,516:INFO: Evaluating on validation set
+2022-12-01 04:44:20,080:INFO: - Eval metrics : accuracy: 0.451 ; loss: 4.852
+2022-12-01 04:44:20,473:INFO: 
+Epoch 180/200
+2022-12-01 04:44:50,358:INFO: - Train metrics: accuracy: 0.583 ; loss: 2.258
+2022-12-01 04:44:50,359:INFO: Evaluating on validation set
+2022-12-01 04:44:55,848:INFO: - Eval metrics : accuracy: 0.443 ; loss: 4.794
+2022-12-01 04:44:56,277:INFO: 
+Epoch 181/200
+2022-12-01 04:45:26,290:INFO: - Train metrics: accuracy: 0.586 ; loss: 2.417
+2022-12-01 04:45:26,291:INFO: Evaluating on validation set
+2022-12-01 04:45:31,808:INFO: - Eval metrics : accuracy: 0.426 ; loss: 4.915
+2022-12-01 04:45:32,208:INFO: 
+Epoch 182/200
+2022-12-01 04:46:02,039:INFO: - Train metrics: accuracy: 0.557 ; loss: 2.306
+2022-12-01 04:46:02,040:INFO: Evaluating on validation set
+2022-12-01 04:46:07,652:INFO: - Eval metrics : accuracy: 0.440 ; loss: 4.801
+2022-12-01 04:46:08,087:INFO: 
+Epoch 183/200
+2022-12-01 04:46:37,776:INFO: - Train metrics: accuracy: 0.562 ; loss: 2.482
+2022-12-01 04:46:37,777:INFO: Evaluating on validation set
+2022-12-01 04:46:43,368:INFO: - Eval metrics : accuracy: 0.454 ; loss: 4.857
+2022-12-01 04:46:43,800:INFO: 
+Epoch 184/200
+2022-12-01 04:47:13,787:INFO: - Train metrics: accuracy: 0.609 ; loss: 2.323
+2022-12-01 04:47:13,787:INFO: Evaluating on validation set
+2022-12-01 04:47:19,360:INFO: - Eval metrics : accuracy: 0.447 ; loss: 4.784
+2022-12-01 04:47:19,735:INFO: 
+Epoch 185/200
+2022-12-01 04:47:49,147:INFO: - Train metrics: accuracy: 0.578 ; loss: 2.432
+2022-12-01 04:47:49,148:INFO: Evaluating on validation set
+2022-12-01 04:47:54,636:INFO: - Eval metrics : accuracy: 0.445 ; loss: 4.776
+2022-12-01 04:47:55,026:INFO: 
+Epoch 186/200
+2022-12-01 04:48:24,763:INFO: - Train metrics: accuracy: 0.549 ; loss: 2.562
+2022-12-01 04:48:24,764:INFO: Evaluating on validation set
+2022-12-01 04:48:30,272:INFO: - Eval metrics : accuracy: 0.444 ; loss: 4.872
+2022-12-01 04:48:30,716:INFO: 
+Epoch 187/200
+2022-12-01 04:49:00,178:INFO: - Train metrics: accuracy: 0.578 ; loss: 2.257
+2022-12-01 04:49:00,178:INFO: Evaluating on validation set
+2022-12-01 04:49:05,859:INFO: - Eval metrics : accuracy: 0.410 ; loss: 4.917
+2022-12-01 04:49:06,265:INFO: 
+Epoch 188/200
+2022-12-01 04:49:35,650:INFO: - Train metrics: accuracy: 0.591 ; loss: 2.499
+2022-12-01 04:49:35,651:INFO: Evaluating on validation set
+2022-12-01 04:49:41,122:INFO: - Eval metrics : accuracy: 0.441 ; loss: 5.107
+2022-12-01 04:49:41,550:INFO: 
+Epoch 189/200
+2022-12-01 04:50:11,787:INFO: - Train metrics: accuracy: 0.617 ; loss: 2.347
+2022-12-01 04:50:11,788:INFO: Evaluating on validation set
+2022-12-01 04:50:17,337:INFO: - Eval metrics : accuracy: 0.451 ; loss: 4.805
+2022-12-01 04:50:17,764:INFO: 
+Epoch 190/200
+2022-12-01 04:50:47,721:INFO: - Train metrics: accuracy: 0.573 ; loss: 2.341
+2022-12-01 04:50:47,722:INFO: Evaluating on validation set
+2022-12-01 04:50:53,265:INFO: - Eval metrics : accuracy: 0.461 ; loss: 4.749
+2022-12-01 04:50:53,676:INFO: 
+Epoch 191/200
+2022-12-01 04:51:25,797:INFO: - Train metrics: accuracy: 0.570 ; loss: 2.483
+2022-12-01 04:51:25,798:INFO: Evaluating on validation set
+2022-12-01 04:51:32,715:INFO: - Eval metrics : accuracy: 0.439 ; loss: 4.878
+2022-12-01 04:51:33,086:INFO: 
+Epoch 192/200
+2022-12-01 04:52:03,881:INFO: - Train metrics: accuracy: 0.617 ; loss: 2.446
+2022-12-01 04:52:03,881:INFO: Evaluating on validation set
+2022-12-01 04:52:09,609:INFO: - Eval metrics : accuracy: 0.461 ; loss: 4.765
+2022-12-01 04:52:10,032:INFO: 
+Epoch 193/200
+2022-12-01 04:52:40,239:INFO: - Train metrics: accuracy: 0.549 ; loss: 2.402
+2022-12-01 04:52:40,239:INFO: Evaluating on validation set
+2022-12-01 04:52:45,962:INFO: - Eval metrics : accuracy: 0.446 ; loss: 4.756
+2022-12-01 04:52:46,396:INFO: 
+Epoch 194/200
+2022-12-01 04:53:16,673:INFO: - Train metrics: accuracy: 0.539 ; loss: 2.595
+2022-12-01 04:53:16,673:INFO: Evaluating on validation set
+2022-12-01 04:53:22,304:INFO: - Eval metrics : accuracy: 0.441 ; loss: 4.887
+2022-12-01 04:53:22,714:INFO: 
+Epoch 195/200
+2022-12-01 04:53:53,054:INFO: - Train metrics: accuracy: 0.604 ; loss: 2.316
+2022-12-01 04:53:53,055:INFO: Evaluating on validation set
+2022-12-01 04:53:58,801:INFO: - Eval metrics : accuracy: 0.454 ; loss: 4.890
+2022-12-01 04:53:59,210:INFO: 
+Epoch 196/200
+2022-12-01 04:54:31,330:INFO: - Train metrics: accuracy: 0.630 ; loss: 2.483
+2022-12-01 04:54:31,330:INFO: Evaluating on validation set
+2022-12-01 04:54:36,878:INFO: - Eval metrics : accuracy: 0.450 ; loss: 4.749
+2022-12-01 04:54:37,319:INFO: 
+Epoch 197/200
+2022-12-01 04:55:08,256:INFO: - Train metrics: accuracy: 0.581 ; loss: 2.490
+2022-12-01 04:55:08,256:INFO: Evaluating on validation set
+2022-12-01 04:55:13,925:INFO: - Eval metrics : accuracy: 0.462 ; loss: 4.704
+2022-12-01 04:55:14,325:INFO: 
+Epoch 198/200
+2022-12-01 04:55:45,095:INFO: - Train metrics: accuracy: 0.583 ; loss: 2.428
+2022-12-01 04:55:45,096:INFO: Evaluating on validation set
+2022-12-01 04:55:50,700:INFO: - Eval metrics : accuracy: 0.456 ; loss: 4.769
+2022-12-01 04:55:51,095:INFO: 
+Epoch 199/200
+2022-12-01 04:56:21,759:INFO: - Train metrics: accuracy: 0.581 ; loss: 2.361
+2022-12-01 04:56:21,760:INFO: Evaluating on validation set
+2022-12-01 04:56:27,383:INFO: - Eval metrics : accuracy: 0.429 ; loss: 4.758
+2022-12-01 04:56:27,819:INFO: 
+Epoch 200/200
+2022-12-01 04:56:58,695:INFO: - Train metrics: accuracy: 0.583 ; loss: 2.324
+2022-12-01 04:56:58,695:INFO: Evaluating on validation set
+2022-12-01 04:57:04,645:INFO: - Eval metrics : accuracy: 0.440 ; loss: 4.808
