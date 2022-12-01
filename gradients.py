@@ -1,5 +1,10 @@
 from pytorch_grad_cam import GradCAM, HiResCAM, ScoreCAM, GradCAMPlusPlus, AblationCAM, XGradCAM, EigenCAM, FullGrad
 from pytorch_grad_cam.utils.model_targets import ClassifierOutputTarget
+import numpy as np
+import matplotlib
+import torch
+from torchvision import datasets, transforms
+import matplotlib.pyplot as plt
 
 
 def get_gradcam_saliency_maps(x, y, model):
