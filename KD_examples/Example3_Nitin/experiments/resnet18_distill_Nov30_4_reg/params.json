@@ -1,0 +1,18 @@
+{
+    "pretrained": false,
+    "model_version": "resnet18",
+    "distillation" : true,
+    "teacher": "resnet50",
+    "teacher_checkpoint":"experiments/base_resnet50_TL_Nov19/best.pth.tar",
+    "alpha": 0.95,
+    "temperature": 6,
+    "learning_rate": 1e-2,
+    "num_epochs": 200,
+    "scheduler_step_size": 50,
+    "save_summary_steps": 10,
+    "num_workers": 1,
+    "data_dir": "/home/jupyter/cs762/data",
+    "valid_size": 0.2,
+    "batch_size": 64,
+    "augment": true
+}

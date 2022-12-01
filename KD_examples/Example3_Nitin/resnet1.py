@@ -3,7 +3,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 import logging
-from functorch import jacrev, vmap
 
 num_classes = 37
 
@@ -38,7 +37,7 @@ def loss_fn(outputs, labels):
     return nn.CrossEntropyLoss()(outputs, labels)
 
 
-def loss_fn_kd(inputs, outputs, labels, teacher_outputs, params):
+def loss_fn_kd(outputs, labels, teacher_outputs, params):
     """
     Compute the knowledge-distillation (KD) loss given outputs, labels.
     "Hyperparameters": temperature and alpha
@@ -52,25 +51,6 @@ def loss_fn_kd(inputs, outputs, labels, teacher_outputs, params):
         F.cross_entropy(outputs, labels) * (1. - alpha)
 
     return KD_loss
-
-
-def loss_regularised_kd(inputs, outputs, labels, teacher_outputs, params, 
-                        teacher_model, student_model):
-    '''
-    Compute loss with regularised term
-    '''
-
-    l = 0.1
-    Kd_loss = loss_fn_kd(inputs, outputs, labels, teacher_outputs, params)
-    
-    teacher_grad = get_gradients(inputs, labels, teacher_model)
-    student_grad = get_gradients(inputs, labels, student_model)
-
-    reg = ((teacher_grad - student_grad)**2).mean(dim=1)
-    reg_loss = Kd_loss + l*reg
-    
-    return reg_loss
-
 
 
 def accuracy(outputs, labels):
@@ -103,16 +83,3 @@ def initialize_weights(m):
     elif isinstance(m, nn.Linear):
         nn.init.kaiming_uniform_(m.weight.data)
         nn.init.constant_(m.bias.data, 0)
-
-def predict(inputs, labels, model):
-    '''
-    predict the final model output for the true label
-    '''
-    out =  model(inputs)
-    out = out[labels]
-    return out
-
-def get_gradients(inputs, labels, model):
-    # Grad wrt input
-    dx = vmap(jacrev(predict, argnums=0))(inputs, labels, model)
-    return dx

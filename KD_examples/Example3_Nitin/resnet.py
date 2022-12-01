@@ -3,6 +3,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 import logging
+from functorch import jacrev, vmap
+from functorch.experimental import replace_all_batch_norm_modules_
 
 num_classes = 37
 
@@ -37,22 +39,6 @@ def loss_fn(outputs, labels):
     return nn.CrossEntropyLoss()(outputs, labels)
 
 
-def loss_fn_kd(outputs, labels, teacher_outputs, params):
-    """
-    Compute the knowledge-distillation (KD) loss given outputs, labels.
-    "Hyperparameters": temperature and alpha
-    NOTE: the KL Divergence for PyTorch comparing the softmaxs of teacher
-    and student expects the input tensor to be log probabilities! See Issue #2
-    """
-    alpha = params.alpha
-    T = params.temperature
-    KD_loss = nn.KLDivLoss(reduction="batchmean")(F.log_softmax(outputs/T, dim=1),
-                                                  F.softmax(teacher_outputs/T, dim=1)) * (alpha * T * T) + \
-        F.cross_entropy(outputs, labels) * (1. - alpha)
-
-    return KD_loss
-
-
 def accuracy(outputs, labels):
     """
     Compute the accuracy, given the outputs and labels for all images.
@@ -72,7 +58,7 @@ metrics = {
 
 
 def initialize_weights(m):
-    
+
     if isinstance(m, nn.Conv2d):
         nn.init.kaiming_normal_(m.weight.data, nonlinearity='relu')
         if m.bias is not None:
@@ -83,3 +69,84 @@ def initialize_weights(m):
     elif isinstance(m, nn.Linear):
         nn.init.kaiming_uniform_(m.weight.data)
         nn.init.constant_(m.bias.data, 0)
+
+
+class KD_loss():
+
+    def __init__(self, inputs, outputs, labels, teacher_outputs, params,
+                 teacher_model, student_model, eval_mode=False):
+        self.params = params
+        self.teacher = teacher_model
+        self.student = student_model
+        self.inputs = inputs
+        self.outputs = outputs  # student outputs
+        self.teacher_outputs = teacher_outputs
+        self.labels = labels
+        self.eval_mode = eval_mode
+
+    def __call__(self):
+        return self.total_loss()
+
+    def loss_fn_kd(self):
+        """
+        Compute the knowledge-distillation (KD) loss given outputs, labels.
+        "Hyperparameters": temperature and alpha
+        NOTE: the KL Divergence for PyTorch comparing the softmaxs of teacher
+        and student expects the input tensor to be log probabilities! See Issue #2
+        """
+        alpha = self.params.alpha
+        T = self.params.temperature
+        KD_loss = nn.KLDivLoss(reduction="batchmean")(F.log_softmax(self.outputs/T, dim=1),
+                                                      F.softmax(self.teacher_outputs/T, dim=1)) * (alpha * T * T) + \
+            F.cross_entropy(self.outputs, self.labels) * (1. - alpha)
+
+        return KD_loss
+
+    def loss_regularised_kd(self):
+        '''
+        Compute loss with regularised term
+        '''
+        student_grad = self.get_gradients(self.student)
+        self.eval_mode = True
+        teacher_grad = self.get_gradients(self.teacher)
+
+        d = self.inputs.shape[1]
+        reg_loss = ((teacher_grad - student_grad)**2).mean()
+
+        return reg_loss
+
+    def total_loss(self):
+
+        l = 1e+6
+        kd_loss = self.loss_fn_kd()
+        reg_loss = l*self.loss_regularised_kd()
+        total_loss = kd_loss + reg_loss
+        return kd_loss, reg_loss, total_loss
+
+    def get_gradients(self, model):
+        '''
+        Get gradients of the model wrt to the inputs
+        '''
+        replace_all_batch_norm_modules_(model)
+        batch_grad = vmap(jacrev(predict, argnums=0), in_dims=(0, None, None, 0))
+        dx = batch_grad(self.inputs, model, self.eval_mode, self.labels)
+        return dx
+
+def predict(inputs, model, eval_mode, labels):
+    '''
+    predict the final model output for the true label
+    '''
+    inputs = inputs.unsqueeze(dim=0)
+    
+    if eval_mode:
+        model.eval()
+        with torch.no_grad():
+            out = model(inputs)
+    else:  
+        out = model(inputs)
+
+    out = out.squeeze(dim=0)
+
+    # todo: replace with out[labels]
+    out = torch.max(out)
+    return out

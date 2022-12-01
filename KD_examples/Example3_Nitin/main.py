@@ -16,7 +16,7 @@ from torch.autograd import Variable
 from tqdm import tqdm
 import utils
 import dataloader as data_loader
-import resnet
+import resnet as R
 from evaluate import evaluate, evaluate_kd
 from torch.utils.tensorboard import SummaryWriter
 
@@ -204,8 +204,7 @@ def train_kd(model, teacher_model, optimizer, loss_fn_kd, dataloader, metrics, p
                 train_batch, labels_batch = train_batch.cuda(non_blocking=True), \
                     labels_batch.cuda(non_blocking=True)
             # convert to torch Variables
-            train_batch, labels_batch = Variable(
-                train_batch), Variable(labels_batch)
+            train_batch, labels_batch = Variable(train_batch), Variable(labels_batch)
 
             # compute model output, fetch teacher output, and compute KD loss
             output_batch = model(train_batch)
@@ -216,13 +215,15 @@ def train_kd(model, teacher_model, optimizer, loss_fn_kd, dataloader, metrics, p
             if params.cuda:
                 output_teacher_batch = output_teacher_batch.cuda(
                     non_blocking=True)
+            
+            kd_loss, reg_loss, total_loss = loss_fn_kd(train_batch ,output_batch, labels_batch,
+                              output_teacher_batch, params, teacher_model, model)()
 
-            loss = loss_fn_kd(output_batch, labels_batch,
-                              output_teacher_batch, params)
-
-            # clear previous gradients, compute gradients of all variables wrt loss
+            # clear previous gradients, 
             optimizer.zero_grad()
-            loss.backward()
+            
+            # compute gradients of all variables wrt loss
+            total_loss.backward()
 
             # performs updates using calculated gradients
             optimizer.step()
@@ -236,11 +237,13 @@ def train_kd(model, teacher_model, optimizer, loss_fn_kd, dataloader, metrics, p
                 # compute all metrics on this batch
                 summary_batch = {metric: metrics[metric](output_batch, labels_batch)
                                  for metric in metrics}
-                summary_batch['loss'] = loss.data.cpu().numpy()
+                summary_batch['kd_loss'] = kd_loss.data.cpu().numpy()
+                summary_batch['reg_loss'] = reg_loss.data.cpu().numpy()
+                summary_batch['total_loss'] = total_loss.data.cpu().numpy()
                 summ.append(summary_batch)
 
             # update the average loss
-            loss_avg.update(loss.data)
+            loss_avg.update(total_loss.data)
 
             t.set_postfix(loss='{:05.3f}'.format(loss_avg()))
             t.update()
@@ -252,6 +255,8 @@ def train_kd(model, teacher_model, optimizer, loss_fn_kd, dataloader, metrics, p
                                 for k, v in metrics_mean.items())
     logging.info("- Train metrics: " + metrics_string)
 
+    del kd_loss, reg_loss, total_loss, output_batch, labels_batch, train_batch
+    torch.cuda.empty_cache()
     return metrics_mean
 
 
@@ -275,7 +280,7 @@ def train_and_evaluate_kd(model, teacher_model, train_dataloader, val_dataloader
     best_val_acc = 0.0
 
     # learning rate schedulers for different models:
-    scheduler = StepLR(optimizer, step_size=100, gamma=0.1)
+    scheduler = StepLR(optimizer, step_size=params.scheduler_step_size, gamma=0.1)
 
     # Tensorboard logger
     tb_path = (os.path.join(model_dir, 'tb_logs'))
@@ -324,7 +329,9 @@ def train_and_evaluate_kd(model, teacher_model, train_dataloader, val_dataloader
 
         # append to epoch_metrics
         epoch_metrics['val_accuracy'] = val_metrics['accuracy']
-        epoch_metrics['val_loss'] = val_metrics['loss']
+        epoch_metrics['val_kd_loss'] = val_metrics['kd_loss']
+        epoch_metrics['val_reg_loss'] = val_metrics['reg_loss']
+        epoch_metrics['val_total_loss'] = val_metrics['total_loss']
 
         # write to tensorboard
         for tag, value in epoch_metrics.items():
@@ -377,20 +384,20 @@ if __name__ == '__main__':
     logging.info("Dataloading done.")
 
     # Get Model
-    model = resnet.Resnet(model_name=params.model_version,
+    model = R.Resnet(model_name=params.model_version,
                           pretrained=params.pretrained)
     model = model.to(device)
 
     optimizer = optim.SGD(model.parameters(), lr=params.learning_rate,
                           momentum=0.9, weight_decay=5e-4)
-    metrics = resnet.metrics
+    metrics = R.metrics
 
     if params.distillation:
         logging.info("Using Distillation")
 
         # Specify the pre-trained teacher models for knowledge distillation
-        if params.teacher is not "none":
-            teacher_model = resnet.Resnet(model_name=params.teacher,
+        if params.teacher != "none":
+            teacher_model = R.Resnet(model_name=params.teacher,
                                           pretrained=False)
             teacher_model = teacher_model.to(device)                             
             teacher_checkpoint = params.teacher_checkpoint
@@ -399,7 +406,8 @@ if __name__ == '__main__':
             raise AssertionError("Teacher model not found in params")
 
         # fetch loss function and metrics definition in model files
-        loss_fn_kd = resnet.loss_fn_kd
+        #loss_fn_kd = R.loss_fn_kd
+        loss_fn_kd = R.KD_loss
 
         # Train the model with KD
         logging.info(
@@ -418,7 +426,7 @@ if __name__ == '__main__':
             "Using non-KD mode: regular training of the baseline ResNet-18/50 models")
 
         # fetch loss function and metrics
-        loss_fn = resnet.loss_fn
+        loss_fn = R.loss_fn
 
         # Train the model
         logging.info(

@@ -16,7 +16,7 @@ from torch.autograd import Variable
 from tqdm import tqdm
 import utils
 import dataloader as data_loader
-import resnet
+import resnet as R
 from evaluate import evaluate, evaluate_kd
 from torch.utils.tensorboard import SummaryWriter
 
@@ -204,7 +204,8 @@ def train_kd(model, teacher_model, optimizer, loss_fn_kd, dataloader, metrics, p
                 train_batch, labels_batch = train_batch.cuda(non_blocking=True), \
                     labels_batch.cuda(non_blocking=True)
             # convert to torch Variables
-            train_batch, labels_batch = Variable(train_batch), Variable(labels_batch)
+            train_batch, labels_batch = Variable(
+                train_batch), Variable(labels_batch)
 
             # compute model output, fetch teacher output, and compute KD loss
             output_batch = model(train_batch)
@@ -215,14 +216,12 @@ def train_kd(model, teacher_model, optimizer, loss_fn_kd, dataloader, metrics, p
             if params.cuda:
                 output_teacher_batch = output_teacher_batch.cuda(
                     non_blocking=True)
-            
-            loss = loss_fn_kd(train_batch ,output_batch, labels_batch,
-                              output_teacher_batch, params, teacher_model, model)
 
-            # clear previous gradients, 
+            loss = loss_fn_kd(output_batch, labels_batch,
+                              output_teacher_batch, params)
+
+            # clear previous gradients, compute gradients of all variables wrt loss
             optimizer.zero_grad()
-            
-            # compute gradients of all variables wrt loss
             loss.backward()
 
             # performs updates using calculated gradients
@@ -378,20 +377,20 @@ if __name__ == '__main__':
     logging.info("Dataloading done.")
 
     # Get Model
-    model = resnet.Resnet(model_name=params.model_version,
+    model = R.Resnet(model_name=params.model_version,
                           pretrained=params.pretrained)
     model = model.to(device)
 
     optimizer = optim.SGD(model.parameters(), lr=params.learning_rate,
                           momentum=0.9, weight_decay=5e-4)
-    metrics = resnet.metrics
+    metrics = R.metrics
 
     if params.distillation:
         logging.info("Using Distillation")
 
         # Specify the pre-trained teacher models for knowledge distillation
         if params.teacher is not "none":
-            teacher_model = resnet.Resnet(model_name=params.teacher,
+            teacher_model = R.Resnet(model_name=params.teacher,
                                           pretrained=False)
             teacher_model = teacher_model.to(device)                             
             teacher_checkpoint = params.teacher_checkpoint
@@ -400,8 +399,7 @@ if __name__ == '__main__':
             raise AssertionError("Teacher model not found in params")
 
         # fetch loss function and metrics definition in model files
-        #loss_fn_kd = resnet.loss_fn_kd
-        loss_fn_kd = resnet.loss_regularised_kd
+        loss_fn_kd = R.loss_fn_kd
 
         # Train the model with KD
         logging.info(
@@ -420,7 +418,7 @@ if __name__ == '__main__':
             "Using non-KD mode: regular training of the baseline ResNet-18/50 models")
 
         # fetch loss function and metrics
-        loss_fn = resnet.loss_fn
+        loss_fn = R.loss_fn
 
         # Train the model
         logging.info(

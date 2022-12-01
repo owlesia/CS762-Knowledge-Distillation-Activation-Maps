@@ -1,0 +1,9 @@
+torch
+torchvision
+functorch
+
+tensorflow
+
+numpy
+matplotlib
+tqdm
