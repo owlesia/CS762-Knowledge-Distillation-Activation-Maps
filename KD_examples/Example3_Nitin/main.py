@@ -194,7 +194,9 @@ def train_kd(model, teacher_model, optimizer, loss_fn_kd, dataloader, metrics, p
 
     # summary for current training loop and a running average object for loss
     summ = []
-    loss_avg = utils.RunningAverage()
+    total_loss_avg = utils.RunningAverage()
+    reg_loss_avg = utils.RunningAverage()
+    kd_loss_avg = utils.RunningAverage()
 
     # Use tqdm for progress bar
     with tqdm(total=len(dataloader)) as t:
@@ -243,9 +245,14 @@ def train_kd(model, teacher_model, optimizer, loss_fn_kd, dataloader, metrics, p
                 summ.append(summary_batch)
 
             # update the average loss
-            loss_avg.update(total_loss.data)
+            total_loss_avg.update(total_loss.data)
+            reg_loss_avg.update(reg_loss.data)
+            kd_loss_avg.update(kd_loss.data)
 
-            t.set_postfix(loss='{:05.3f}'.format(loss_avg()))
+            t.set_postfix(total_loss='{:05.3f}'.format(total_loss_avg()), 
+                          reg_loss='{:05.3f}'.format(reg_loss_avg()),
+                          kd_loss='{:05.3f}'.format(kd_loss_avg())
+                         )
             t.update()
 
     # compute mean of all metrics in summary

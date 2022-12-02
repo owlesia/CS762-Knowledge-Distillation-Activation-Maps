@@ -1,0 +1,10 @@
+2022-12-02 03:14:53,865:INFO: Loading the datasets...
+2022-12-02 03:14:54,021:INFO: Dataloading done.
+2022-12-02 03:14:54,159:INFO: Initializing Weights
+2022-12-02 03:14:56,292:INFO: Using Distillation
+2022-12-02 03:14:56,583:INFO: Initializing Weights
+2022-12-02 03:14:56,901:INFO: Experiment - model version: resnet18
+2022-12-02 03:14:56,901:INFO: Starting KD training for 200 epoch(s)
+2022-12-02 03:14:56,901:INFO: First, loading the teacher model and computing its outputs...
+2022-12-02 03:14:56,903:INFO: 
+Epoch 1/200

@@ -74,7 +74,7 @@ def initialize_weights(m):
 class KD_loss():
 
     def __init__(self, inputs, outputs, labels, teacher_outputs, params,
-                 teacher_model, student_model, eval_mode=False):
+                 teacher_model, student_model):
         self.params = params
         self.teacher = teacher_model
         self.student = student_model
@@ -82,12 +82,14 @@ class KD_loss():
         self.outputs = outputs  # student outputs
         self.teacher_outputs = teacher_outputs
         self.labels = labels
-        self.eval_mode = eval_mode
 
     def __call__(self):
-        return self.total_loss()
+        if self.params.distill_loss_reg:
+            return self.total_loss()
+        else:
+            return self.loss_kd()
 
-    def loss_fn_kd(self):
+    def loss_kd(self):
         """
         Compute the knowledge-distillation (KD) loss given outputs, labels.
         "Hyperparameters": temperature and alpha
@@ -107,18 +109,18 @@ class KD_loss():
         Compute loss with regularised term
         '''
         student_grad = self.get_gradients(self.student)
-        self.eval_mode = True
         teacher_grad = self.get_gradients(self.teacher)
 
         d = self.inputs.shape[1]
         reg_loss = ((teacher_grad - student_grad)**2).mean()
 
+        del student_grad, teacher_grad
         return reg_loss
 
     def total_loss(self):
 
         l = 1e+6
-        kd_loss = self.loss_fn_kd()
+        kd_loss = self.loss_kd()
         reg_loss = l*self.loss_regularised_kd()
         total_loss = kd_loss + reg_loss
         return kd_loss, reg_loss, total_loss
@@ -128,25 +130,18 @@ class KD_loss():
         Get gradients of the model wrt to the inputs
         '''
         replace_all_batch_norm_modules_(model)
-        batch_grad = vmap(jacrev(predict, argnums=0), in_dims=(0, None, None, 0))
-        dx = batch_grad(self.inputs, model, self.eval_mode, self.labels)
+        batch_grad = vmap(jacrev(predict, argnums=0), in_dims=(0, None, 0))
+        dx = batch_grad(self.inputs, model, self.labels.unsqueeze(dim=1))
         return dx
 
-def predict(inputs, model, eval_mode, labels):
+def predict(input, model, label):
     '''
     predict the final model output for the true label
     '''
-    inputs = inputs.unsqueeze(dim=0)
-    
-    if eval_mode:
-        model.eval()
-        with torch.no_grad():
-            out = model(inputs)
-    else:  
-        out = model(inputs)
-
+    input = input.unsqueeze(dim=0)
+    out = model(input)
     out = out.squeeze(dim=0)
 
-    # todo: replace with out[labels]
-    out = torch.max(out)
+    # pick the output for the true label
+    out = out[label]
     return out

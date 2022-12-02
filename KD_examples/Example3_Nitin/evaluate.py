@@ -113,9 +113,11 @@ def evaluate_kd(model, teacher_model, loss_fn_kd, dataloader, metrics, params):
             output_teacher_batch = output_teacher_batch.cuda(
                 non_blocking=True)
 
-        kd_loss, reg_loss, total_loss = loss_fn_kd(data_batch, output_batch, labels_batch,
-                              output_teacher_batch, params, teacher_model, model, eval_mode=True)()
-        # loss = 0.0  #force validation loss to zero to reduce computation time
+        # kd_loss, reg_loss, total_loss = loss_fn_kd(data_batch, output_batch, labels_batch,
+        #                       output_teacher_batch, params, teacher_model, model)()
+
+        #force validation loss to zero to reduce computation time
+        total_loss = torch.tensor(0.0, dtype=torch.float32)
 
         # extract data from torch Variable, move to cpu, convert to numpy arrays
         output_batch = output_batch.data.cpu().numpy()
@@ -125,8 +127,8 @@ def evaluate_kd(model, teacher_model, loss_fn_kd, dataloader, metrics, params):
         summary_batch = {metric: metrics[metric](output_batch, labels_batch)
                          for metric in metrics}
 
-        summary_batch['kd_loss'] = kd_loss.data.cpu().numpy()
-        summary_batch['reg_loss'] = reg_loss.data.cpu().numpy()
+        # summary_batch['kd_loss'] = kd_loss.data.cpu().numpy()
+        # summary_batch['reg_loss'] = reg_loss.data.cpu().numpy()
         summary_batch['total_loss'] = total_loss.data.cpu().numpy()
         summ.append(summary_batch)
 
