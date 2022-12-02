@@ -111,15 +111,17 @@ class KD_loss():
         student_grad = self.get_gradients(self.student)
         teacher_grad = self.get_gradients(self.teacher).detach()
 
-        reg_loss = ((teacher_grad - student_grad)**2).mean()
+        reg_loss = nn.L1Loss()(student_grad, teacher_grad)
+        #reg_loss = ((teacher_grad - student_grad)**2).mean()
         return reg_loss
 
     def total_loss(self):
 
-        l = 1e+6
+        l = 1e+3
+        w = self.params.reg_weight #weight of regularisation term
         kd_loss = self.loss_kd()
         reg_loss = l*self.loss_regularised_kd()
-        total_loss = kd_loss + reg_loss
+        total_loss = (1-w)*kd_loss + w*reg_loss
         return kd_loss, reg_loss, total_loss
 
     def get_gradients(self, model):

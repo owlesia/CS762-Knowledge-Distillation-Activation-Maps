@@ -88,41 +88,11 @@ def get_train_valid_loader(data_dir,
         root=data_dir, split = 'trainval',
         download=False, transform=train_transform,
     )
-    
-    # Selecting classes "Bengal", "Chihuahua"
-    # train_idx = []
-    # for i in range(len(train_dataset)):
-    #     if train_dataset.__getitem__(i)[1] in [1, 2, 3]:
-    #         train_idx.append(i)
-    # train_dataset = torch.utils.data.Subset(train_dataset, train_idx)
-    
-    # train_dataset.labels = train_dataset.labels[idx]
-    # train_dataset.data = train_dataset.data[idx]
-    
-    # Olesia added to limit size of the datasets
-    #train_dataset = torch.utils.data.random_split(train_dataset, [1000, len(train_dataset)-1000])[0]
 
     valid_dataset = datasets.OxfordIIITPet(
         root=data_dir, split = 'trainval',
         download=False, transform=valid_transform,
     )
-    
-#     valid_idx = []
-#     for i in range(len(valid_dataset)):
-#         if valid_dataset.__getitem__(i)[1] in [1, 2, 3]:
-#             valid_idx.append(i)
-#     valid_dataset = torch.utils.data.Subset(valid_dataset, valid_idx)
-    
-#     print(len(train_idx), train_idx)
-#     print(len(valid_idx), valid_idx)
-    
-    
-    # Olesia added to limit size of the datasets
-    #valid_dataset = torch.utils.data.random_split(valid_dataset, [1000, len(valid_dataset)-1000])[0]
-    
-    # idx = (valid_dataset.targets=="Bengal") | (valid_dataset.targets=="Chihuahua")
-    # valid_dataset.targets = valid_dataset.targets[idx]
-    # valid_dataset.data = valid_dataset.data[idx]
 
     num_train = len(train_dataset)
     indices = list(range(num_train))
@@ -137,12 +107,12 @@ def get_train_valid_loader(data_dir,
     valid_sampler = SubsetRandomSampler(valid_idx)
 
     train_loader = torch.utils.data.DataLoader(
-        train_dataset, batch_size=batch_size, #sampler=train_sampler,
-        num_workers=num_workers, pin_memory=pin_memory, shuffle=True, # Olesia added shuffle
+        train_dataset, batch_size=batch_size, sampler=train_sampler,
+        num_workers=num_workers, pin_memory=pin_memory,
     )
     valid_loader = torch.utils.data.DataLoader(
-        valid_dataset, batch_size=batch_size, #sampler=valid_sampler,
-        num_workers=num_workers, pin_memory=pin_memory, shuffle=True, # Olesia added shuffle
+        valid_dataset, batch_size=batch_size, sampler=valid_sampler,
+        num_workers=num_workers, pin_memory=pin_memory,
     )
 
     # visualize some images
@@ -222,5 +192,4 @@ def imshow(inp, title=None):
     if title is not None:
         plt.title(title)
     plt.pause(0.001)  # pause a bit so that plots are updated
-
 
