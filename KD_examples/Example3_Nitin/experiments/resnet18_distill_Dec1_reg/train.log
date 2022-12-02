@@ -1,10 +1,22 @@
-2022-12-02 03:14:53,865:INFO: Loading the datasets...
-2022-12-02 03:14:54,021:INFO: Dataloading done.
-2022-12-02 03:14:54,159:INFO: Initializing Weights
-2022-12-02 03:14:56,292:INFO: Using Distillation
-2022-12-02 03:14:56,583:INFO: Initializing Weights
-2022-12-02 03:14:56,901:INFO: Experiment - model version: resnet18
-2022-12-02 03:14:56,901:INFO: Starting KD training for 200 epoch(s)
-2022-12-02 03:14:56,901:INFO: First, loading the teacher model and computing its outputs...
-2022-12-02 03:14:56,903:INFO: 
+2022-12-02 03:54:30,078:INFO: Loading the datasets...
+2022-12-02 03:54:30,227:INFO: Dataloading done.
+2022-12-02 03:54:30,365:INFO: Initializing Weights
+2022-12-02 03:54:32,530:INFO: Using Distillation
+2022-12-02 03:54:32,823:INFO: Initializing Weights
+2022-12-02 03:54:33,138:INFO: Experiment - model version: resnet18
+2022-12-02 03:54:33,138:INFO: Starting KD training for 200 epoch(s)
+2022-12-02 03:54:33,138:INFO: First, loading the teacher model and computing its outputs...
+2022-12-02 03:54:33,140:INFO: 
 Epoch 1/200
+2022-12-02 03:56:06,560:INFO: - Train metrics: accuracy: 0.028 ; kd_loss: 4.940 ; reg_loss: 6.304 ; loss: 11.244
+2022-12-02 03:56:06,778:INFO: Evaluating on validation set
+2022-12-02 03:56:12,112:INFO: - Eval metrics : accuracy: 0.035 ; total_loss: 0.000
+2022-12-02 03:56:12,324:INFO: - Found new best accuracy
+2022-12-02 03:56:12,325:INFO: 
+Epoch 2/200
+2022-12-02 03:57:44,420:INFO: - Train metrics: accuracy: 0.044 ; kd_loss: 4.999 ; reg_loss: 4.522 ; loss: 9.521
+2022-12-02 03:57:44,626:INFO: Evaluating on validation set
+2022-12-02 03:57:49,892:INFO: - Eval metrics : accuracy: 0.042 ; total_loss: 0.000
+2022-12-02 03:57:50,617:INFO: - Found new best accuracy
+2022-12-02 03:57:50,618:INFO: 
+Epoch 3/200

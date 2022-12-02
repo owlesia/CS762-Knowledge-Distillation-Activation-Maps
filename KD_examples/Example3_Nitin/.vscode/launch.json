@@ -11,7 +11,7 @@
             "program": "main.py",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "args": "--model_dir experiments/resnet18_distill_Nov30_4_reg/"
+            "args": "--model_dir experiments/resnet18_distill_Dec1_reg"
         }
     ]
 }

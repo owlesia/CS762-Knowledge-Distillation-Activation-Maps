@@ -241,7 +241,7 @@ def train_kd(model, teacher_model, optimizer, loss_fn_kd, dataloader, metrics, p
                                  for metric in metrics}
                 summary_batch['kd_loss'] = kd_loss.data.cpu().numpy()
                 summary_batch['reg_loss'] = reg_loss.data.cpu().numpy()
-                summary_batch['total_loss'] = total_loss.data.cpu().numpy()
+                summary_batch['loss'] = total_loss.data.cpu().numpy()
                 summ.append(summary_batch)
 
             # update the average loss
@@ -336,9 +336,11 @@ def train_and_evaluate_kd(model, teacher_model, train_dataloader, val_dataloader
 
         # append to epoch_metrics
         epoch_metrics['val_accuracy'] = val_metrics['accuracy']
-        epoch_metrics['val_kd_loss'] = val_metrics['kd_loss']
-        epoch_metrics['val_reg_loss'] = val_metrics['reg_loss']
-        epoch_metrics['val_total_loss'] = val_metrics['total_loss']
+
+        # Not calculating val_loss to save time
+        # epoch_metrics['val_kd_loss'] = val_metrics['kd_loss']
+        # epoch_metrics['val_reg_loss'] = val_metrics['reg_loss']
+        # epoch_metrics['val_total_loss'] = val_metrics['total_loss']
 
         # write to tensorboard
         for tag, value in epoch_metrics.items():

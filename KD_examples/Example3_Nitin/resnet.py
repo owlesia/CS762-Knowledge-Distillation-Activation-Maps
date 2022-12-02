@@ -109,12 +109,9 @@ class KD_loss():
         Compute loss with regularised term
         '''
         student_grad = self.get_gradients(self.student)
-        teacher_grad = self.get_gradients(self.teacher)
+        teacher_grad = self.get_gradients(self.teacher).detach()
 
-        d = self.inputs.shape[1]
         reg_loss = ((teacher_grad - student_grad)**2).mean()
-
-        del student_grad, teacher_grad
         return reg_loss
 
     def total_loss(self):

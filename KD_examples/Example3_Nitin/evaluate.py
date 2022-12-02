@@ -106,18 +106,22 @@ def evaluate_kd(model, teacher_model, loss_fn_kd, dataloader, metrics, params):
         # compute model output
         output_batch = model(data_batch)
 
-         # get one batch output from teacher_outputs list
-        with torch.no_grad():
-            output_teacher_batch = teacher_model(data_batch)
-        if params.cuda:
-            output_teacher_batch = output_teacher_batch.cuda(
-                non_blocking=True)
+        
+        compute_val_loss = False
+        
+        if compute_val_loss:
+            # get one batch output from teacher_outputs list
+            with torch.no_grad():
+                output_teacher_batch = teacher_model(data_batch)
+            if params.cuda:
+                output_teacher_batch = output_teacher_batch.cuda(
+                    non_blocking=True)
 
-        # kd_loss, reg_loss, total_loss = loss_fn_kd(data_batch, output_batch, labels_batch,
-        #                       output_teacher_batch, params, teacher_model, model)()
-
-        #force validation loss to zero to reduce computation time
-        total_loss = torch.tensor(0.0, dtype=torch.float32)
+            # kd_loss, reg_loss, total_loss = loss_fn_kd(data_batch, output_batch, labels_batch,
+            #                       output_teacher_batch, params, teacher_model, model)()
+        else:
+            #force validation loss to zero to reduce computation time
+            total_loss = torch.tensor(0.0, dtype=torch.float32)
 
         # extract data from torch Variable, move to cpu, convert to numpy arrays
         output_batch = output_batch.data.cpu().numpy()
@@ -138,8 +142,5 @@ def evaluate_kd(model, teacher_model, loss_fn_kd, dataloader, metrics, params):
     metrics_string = " ; ".join("{}: {:05.3f}".format(k, v)
                                 for k, v in metrics_mean.items())
     logging.info("- Eval metrics : " + metrics_string)
-
-    del kd_loss, reg_loss, total_loss, output_teacher_batch, output_batch, labels_batch, data_batch
-    torch.cuda.empty_cache()
 
     return metrics_mean
