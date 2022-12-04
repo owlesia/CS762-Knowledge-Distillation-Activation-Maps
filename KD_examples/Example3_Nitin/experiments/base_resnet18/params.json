@@ -1,14 +1,16 @@
 {
+    "pretrained": false,
     "model_version": "resnet18",
-    "teacher": "none",
-    "alpha": 0.0,
-    "temperature": 1,
+    "distillation": false,
+    "alpha": 0.95,
+    "temperature": 6,
     "learning_rate": 1e-2,
-    "num_epochs": 20,
-    "save_summary_steps": 2,
+    "num_epochs": 3,
+    "scheduler_step_size": 50,
+    "save_summary_steps": 10,
     "num_workers": 1,
-    "data_dir": "/Users/image/Downloads",
+    "data_dir": "/u/o/e/oelfimova/Projects/data",
     "valid_size": 0.2,
-    "batch_size": 2,
-    "augment": "True"
+    "batch_size": 4,
+    "augment": true
 }

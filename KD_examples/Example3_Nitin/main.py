@@ -19,6 +19,9 @@ import dataloader as data_loader
 import resnet as R
 from evaluate import evaluate, evaluate_kd
 from torch.utils.tensorboard import SummaryWriter
+from torch.distributed import init_process_group, destroy_process_group
+import torch.multiprocessing as mp
+from torch.nn.parallel import DistributedDataParallel as DDP
 
 parser = argparse.ArgumentParser()
 # parser.add_argument('--data_dir', default='data/64x64_SIGNS', help="Directory for the dataset")
@@ -71,16 +74,16 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params):
             optimizer.step()
 
             # Evaluate summaries only once in a while
-            if i % params.save_summary_steps == 0:
-                # extract data from torch Variable, move to cpu, convert to numpy arrays
-                output_batch = output_batch.data.cpu().numpy()
-                labels_batch = labels_batch.data.cpu().numpy()
+            # if i % params.save_summary_steps == 0:
+            #     # extract data from torch Variable, move to cpu, convert to numpy arrays
+            #     output_batch = output_batch.data.cpu().numpy()
+            #     labels_batch = labels_batch.data.cpu().numpy()
 
-                # compute all metrics on this batch
-                summary_batch = {metric: metrics[metric](output_batch, labels_batch)
-                                 for metric in metrics}
-                summary_batch['loss'] = loss.data.cpu().numpy()
-                summ.append(summary_batch)
+            #     # compute all metrics on this batch
+            #     summary_batch = {metric: metrics[metric](output_batch, labels_batch)
+            #                      for metric in metrics}
+            #     summary_batch['loss'] = loss.data.cpu().numpy()
+            #     summ.append(summary_batch)
 
             # update the average loss
             loss_avg.update(loss.data)
@@ -89,13 +92,14 @@ def train(model, optimizer, loss_fn, dataloader, metrics, params):
             t.update()
 
     # compute mean of all metrics in summary
-    metrics_mean = {metric: np.mean([x[metric]
-                                    for x in summ]) for metric in summ[0]}
-    metrics_string = " ; ".join("{}: {:05.3f}".format(k, v)
-                                for k, v in metrics_mean.items())
-    logging.info("- Train metrics: " + metrics_string)
+    # metrics_mean = {metric: np.mean([x[metric]
+    #                                 for x in summ]) for metric in summ[0]}
+    # metrics_string = " ; ".join("{}: {:05.3f}".format(k, v)
+    #                             for k, v in metrics_mean.items())
+    # logging.info("- Train metrics: " + metrics_string)
 
-    return metrics_mean
+    # return metrics_mean
+    return None
 
 
 def train_and_evaluate(model, train_dataloader, val_dataloader, optimizer,
@@ -121,9 +125,9 @@ def train_and_evaluate(model, train_dataloader, val_dataloader, optimizer,
     scheduler = StepLR(optimizer, step_size=params.scheduler_step_size, gamma=0.1)
 
     # Tensorboard logger
-    tb_path = (os.path.join(model_dir, 'tb_logs'))
-    writer = SummaryWriter(tb_path)
-    writer.add_text('hyperparameters', params.get_content())
+    # tb_path = (os.path.join(model_dir, 'tb_logs'))
+    # writer = SummaryWriter(tb_path)
+    # writer.add_text('hyperparameters', params.get_content())
 
     for epoch in range(params.num_epochs):
 
@@ -137,40 +141,40 @@ def train_and_evaluate(model, train_dataloader, val_dataloader, optimizer,
 
         # Evaluate for one epoch on validation set
         logging.info("Evaluating on validation set")
-        val_metrics = evaluate(model, loss_fn, val_dataloader, metrics, params)
+        # val_metrics = evaluate(model, loss_fn, val_dataloader, metrics, params)
 
-        val_acc = val_metrics['accuracy']
-        is_best = val_acc >= best_val_acc
+        # val_acc = val_metrics['accuracy']
+        # is_best = val_acc >= best_val_acc
 
-        # Save weights
-        utils.save_checkpoint({'epoch': epoch + 1,
-                               'state_dict': model.state_dict(),
-                               'optim_dict': optimizer.state_dict()},
-                              is_best=is_best,
-                              checkpoint=model_dir)
+        # # Save weights
+        # utils.save_checkpoint({'epoch': epoch + 1,
+        #                        'state_dict': model.state_dict(),
+        #                        'optim_dict': optimizer.state_dict()},
+        #                       is_best=is_best,
+        #                       checkpoint=model_dir)
 
         # If best_eval, best_save_path
-        if is_best:
-            logging.info("- Found new best accuracy")
-            best_val_acc = val_acc
+        # if is_best:
+        #     logging.info("- Found new best accuracy")
+        #     best_val_acc = val_acc
 
-            # Save best val metrics in a json file in the model directory
-            best_json_path = os.path.join(
-                model_dir, "metrics_val_best_weights.json")
-            utils.save_dict_to_json(val_metrics, best_json_path)
+        #     # Save best val metrics in a json file in the model directory
+        #     best_json_path = os.path.join(
+        #         model_dir, "metrics_val_best_weights.json")
+        #     utils.save_dict_to_json(val_metrics, best_json_path)
 
         # Save latest val metrics in a json file in the model directory
-        last_json_path = os.path.join(
-            model_dir, "metrics_val_last_weights.json")
-        utils.save_dict_to_json(val_metrics, last_json_path)
+        # last_json_path = os.path.join(
+        #     model_dir, "metrics_val_last_weights.json")
+        # utils.save_dict_to_json(val_metrics, last_json_path)
 
         # append to epoch_metrics
-        epoch_metrics['val_accuracy'] = val_metrics['accuracy']
-        epoch_metrics['val_loss'] = val_metrics['loss']
+        # epoch_metrics['val_accuracy'] = val_metrics['accuracy']
+        # epoch_metrics['val_loss'] = val_metrics['loss']
 
         # write to tensorboard
-        for tag, value in epoch_metrics.items():
-            writer.add_scalar(tag, value, epoch+1)
+        # for tag, value in epoch_metrics.items():
+        #     writer.add_scalar(tag, value, epoch+1)
     writer.flush()
     writer.close()
 
@@ -349,28 +353,24 @@ def train_and_evaluate_kd(model, teacher_model, train_dataloader, val_dataloader
     writer.flush()
     writer.close()
 
-
-if __name__ == '__main__':
-
+def parse_params():
     # Load the parameters from json file
     args = parser.parse_args()
+    
+    # Set the logger
+    utils.set_logger(os.path.join(args.model_dir, 'train.log'))
+
     json_path = os.path.join(args.model_dir, 'params.json')
     assert os.path.isfile(
         json_path), "No json configuration file found at {}".format(json_path)
     params = utils.Params(json_path)
+    params.cuda = torch.cuda.is_available()
 
-    # Set the random seed for reproducible experiments
-    random.seed(230)
-    torch.manual_seed(230)
+    return params, args
 
+def load_train_objs(params, rank, world_size):
     # use GPU if available
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    params.cuda = torch.cuda.is_available()
-    if params.cuda:
-        torch.cuda.manual_seed(230)
-
-    # Set the logger
-    utils.set_logger(os.path.join(args.model_dir, 'train.log'))
 
     if not params.cuda:
         logging.info("GPU not available. Proceeding with CPU")
@@ -384,6 +384,8 @@ if __name__ == '__main__':
         batch_size=params.batch_size,
         augment=params.augment,
         random_seed=42,
+        rank=rank,
+        world_size=world_size,
         valid_size=params.valid_size,
         shuffle=True,
         show_sample=False,
@@ -395,12 +397,15 @@ if __name__ == '__main__':
     # Get Model
     model = R.Resnet(model_name=params.model_version,
                           pretrained=params.pretrained)
-    model = model.to(device)
+    model = model.to(rank)
+    model = DDP(model, device_ids=[rank])
 
     optimizer = optim.SGD(model.parameters(), lr=params.learning_rate,
                           momentum=0.9, weight_decay=5e-4)
-    metrics = R.metrics
 
+    return train_dl, dev_dl, model, optimizer
+
+def run(params, device, model, train_dl, dev_dl, optimizer, metrics, args):
     if params.distillation:
         logging.info("Using Distillation")
 
@@ -443,3 +448,37 @@ if __name__ == '__main__':
         train_and_evaluate(model, train_dl, dev_dl, optimizer,
                            loss_fn, metrics, params,
                            args.model_dir, args.restore_file)
+
+def ddp_setup(rank, world_size):
+    """
+    Args:
+        rank: Unique identifier of each process
+        world_size: Total number of processes
+    """
+    os.environ["MASTER_ADDR"] = "localhost"
+    os.environ["MASTER_PORT"] = "12355"
+    init_process_group(backend="nccl", rank=rank, world_size=world_size)
+
+def main(rank: int, world_size: int):
+    logging.info("Setting up ddp")
+    ddp_setup(rank, world_size)
+    params, args = parse_params()
+
+    # Set random seed
+    random.seed(230)
+    torch.manual_seed(230)
+    if params.cuda:
+        torch.cuda.manual_seed(230)
+
+    logging.info("Loading objects")
+    train_dl, dev_dl, model, optimizer = load_train_objs(params, rank, world_size)
+
+    metrics = R.metrics 
+    run(params, rank, model, train_dl, dev_dl, optimizer, metrics, args)
+
+    destroy_process_group()
+
+if __name__ == '__main__':
+    world_size = torch.cuda.device_count()
+    mp.spawn(main, args=(world_size,), nprocs=world_size)
+    

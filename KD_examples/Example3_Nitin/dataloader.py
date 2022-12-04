@@ -9,6 +9,8 @@ from torchvision import datasets
 from torchvision import transforms as T
 from torch.utils.data.sampler import SubsetRandomSampler
 import matplotlib.pyplot as plt
+from torch.utils.data.distributed import DistributedSampler
+from custom_sampler import DistributedSamplerWrapper
 
 
 mean=np.array([0.485, 0.456, 0.406]) 
@@ -18,11 +20,14 @@ def get_train_valid_loader(data_dir,
                            batch_size,
                            augment,
                            random_seed,
+                           rank,
+                           world_size,
                            valid_size=0.2,
                            shuffle=True,
                            show_sample=False,
                            num_workers=1,
-                           pin_memory=True):
+                           pin_memory=True,
+                           ):
     """
     Utility function for loading and returning train and valid
     multi-process iterators over the CIFAR-10 dataset. A sample
@@ -107,19 +112,19 @@ def get_train_valid_loader(data_dir,
     valid_sampler = SubsetRandomSampler(valid_idx)
 
     train_loader = torch.utils.data.DataLoader(
-        train_dataset, batch_size=batch_size, sampler=train_sampler,
-        num_workers=num_workers, pin_memory=pin_memory,
+        train_dataset, batch_size=batch_size, #sampler=train_sampler,
+        num_workers=num_workers, pin_memory=pin_memory, sampler=DistributedSamplerWrapper(sampler=train_sampler, num_replicas=world_size, rank=rank),
     )
     valid_loader = torch.utils.data.DataLoader(
-        valid_dataset, batch_size=batch_size, sampler=valid_sampler,
-        num_workers=num_workers, pin_memory=pin_memory,
+        valid_dataset, batch_size=batch_size, #sampler=valid_sampler,
+        num_workers=num_workers, pin_memory=pin_memory, sampler=DistributedSamplerWrapper(sampler=valid_sampler, num_replicas=world_size, rank=rank),
     )
 
     # visualize some images
     if show_sample:
         sample_loader = torch.utils.data.DataLoader(
             train_dataset, batch_size=9, shuffle=shuffle,
-            num_workers=num_workers, pin_memory=pin_memory,
+            num_workers=num_workers, pin_memory=pin_memory, sampler=DistributedSamplerWrapper(sampler=train_sampler, num_replicas=world_size, rank=rank),
         )
         # Get a batch of training data
         inputs, classes = next(iter(sample_loader))
@@ -169,12 +174,12 @@ def get_test_loader(data_dir,
 
     dataset = datasets.OxfordIIITPet(
         root=data_dir, split = 'test',
-        download=True, transform=transform,
+        download=False, transform=transform,
     )
 
     data_loader = torch.utils.data.DataLoader(
         dataset, batch_size=batch_size, shuffle=shuffle,
-        num_workers=num_workers, pin_memory=pin_memory,
+        num_workers=num_workers, pin_memory=pin_memory, sampler=DistributedSampler(dataset),
     )
 
     return data_loader

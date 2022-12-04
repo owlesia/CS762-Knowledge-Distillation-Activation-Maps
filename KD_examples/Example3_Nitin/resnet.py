@@ -5,6 +5,7 @@ import numpy as np
 import logging
 from functorch import jacrev, vmap
 from functorch.experimental import replace_all_batch_norm_modules_
+import torchvision
 
 num_classes = 37
 
@@ -14,9 +15,10 @@ def Resnet(model_name, pretrained=True):
     model_name : resnet50, resnet18 etc.
     '''
     # Load Model
-    model = torch.hub.load('pytorch/vision:v0.12.0',
-                           model_name,
-                           pretrained=pretrained)
+    model = getattr(torchvision.models, model_name)(pretrained=pretrained)
+    # model = torch.hub.load('pytorch/vision:v0.12.0',
+    #                        model_name,
+    #                        pretrained=pretrained)
 
     # Change the last linear layer as per our num_classes
     in_features = model.fc.in_features
