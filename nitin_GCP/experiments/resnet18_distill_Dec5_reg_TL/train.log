@@ -1,0 +1,76 @@
+2022-12-05 21:08:17,363:INFO: Loading the datasets...
+2022-12-05 21:08:17,541:INFO: Dataloading done.
+2022-12-05 21:08:20,096:INFO: Using Distillation
+2022-12-05 21:08:20,407:INFO: Initializing Weights
+2022-12-05 21:08:20,740:INFO: Experiment - model version: resnet18
+2022-12-05 21:08:20,740:INFO: Starting KD training for 200 epoch(s)
+2022-12-05 21:08:20,740:INFO: First, loading the teacher model and computing its outputs...
+2022-12-05 21:08:20,742:INFO: 
+Epoch 1/200
+2022-12-05 21:09:50,651:INFO: - Train metrics: accuracy: 0.253 ; kd_loss: 3.959 ; reg_loss: 1.501 ; loss: 3.467
+2022-12-05 21:09:50,869:INFO: Evaluating on validation set
+2022-12-05 21:09:56,739:INFO: - Eval metrics : accuracy: 0.501 ; total_loss: 0.000
+2022-12-05 21:09:56,947:INFO: - Found new best accuracy
+2022-12-05 21:09:56,948:INFO: 
+Epoch 2/200
+2022-12-05 21:11:28,555:INFO: - Train metrics: accuracy: 0.516 ; kd_loss: 2.518 ; reg_loss: 1.310 ; loss: 2.276
+2022-12-05 21:11:28,765:INFO: Evaluating on validation set
+2022-12-05 21:11:34,577:INFO: - Eval metrics : accuracy: 0.550 ; total_loss: 0.000
+2022-12-05 21:11:35,313:INFO: - Found new best accuracy
+2022-12-05 21:11:35,315:INFO: 
+Epoch 3/200
+2022-12-05 21:13:07,642:INFO: - Train metrics: accuracy: 0.566 ; kd_loss: 2.051 ; reg_loss: 1.287 ; loss: 1.898
+2022-12-05 21:13:07,852:INFO: Evaluating on validation set
+2022-12-05 21:13:13,566:INFO: - Eval metrics : accuracy: 0.603 ; total_loss: 0.000
+2022-12-05 21:13:14,318:INFO: - Found new best accuracy
+2022-12-05 21:13:14,319:INFO: 
+Epoch 4/200
+2022-12-05 21:14:46,843:INFO: - Train metrics: accuracy: 0.637 ; kd_loss: 1.662 ; reg_loss: 1.309 ; loss: 1.592
+2022-12-05 21:14:47,054:INFO: Evaluating on validation set
+2022-12-05 21:14:52,893:INFO: - Eval metrics : accuracy: 0.639 ; total_loss: 0.000
+2022-12-05 21:14:53,629:INFO: - Found new best accuracy
+2022-12-05 21:14:53,630:INFO: 
+Epoch 5/200
+2022-12-05 21:16:26,152:INFO: - Train metrics: accuracy: 0.669 ; kd_loss: 1.342 ; reg_loss: 1.343 ; loss: 1.342
+2022-12-05 21:16:26,363:INFO: Evaluating on validation set
+2022-12-05 21:16:32,126:INFO: - Eval metrics : accuracy: 0.652 ; total_loss: 0.000
+2022-12-05 21:16:32,866:INFO: - Found new best accuracy
+2022-12-05 21:16:32,867:INFO: 
+Epoch 6/200
+2022-12-05 21:18:05,358:INFO: - Train metrics: accuracy: 0.681 ; kd_loss: 1.428 ; reg_loss: 1.276 ; loss: 1.397
+2022-12-05 21:18:05,568:INFO: Evaluating on validation set
+2022-12-05 21:18:11,306:INFO: - Eval metrics : accuracy: 0.647 ; total_loss: 0.000
+2022-12-05 21:18:11,738:INFO: 
+Epoch 7/200
+2022-12-05 21:19:44,246:INFO: - Train metrics: accuracy: 0.762 ; kd_loss: 1.285 ; reg_loss: 1.402 ; loss: 1.309
+2022-12-05 21:19:44,456:INFO: Evaluating on validation set
+2022-12-05 21:19:50,268:INFO: - Eval metrics : accuracy: 0.659 ; total_loss: 0.000
+2022-12-05 21:19:51,043:INFO: - Found new best accuracy
+2022-12-05 21:19:51,044:INFO: 
+Epoch 8/200
+2022-12-05 21:21:23,641:INFO: - Train metrics: accuracy: 0.681 ; kd_loss: 1.344 ; reg_loss: 1.347 ; loss: 1.344
+2022-12-05 21:21:23,851:INFO: Evaluating on validation set
+2022-12-05 21:21:29,873:INFO: - Eval metrics : accuracy: 0.694 ; total_loss: 0.000
+2022-12-05 21:21:30,651:INFO: - Found new best accuracy
+2022-12-05 21:21:30,652:INFO: 
+Epoch 9/200
+2022-12-05 21:23:03,239:INFO: - Train metrics: accuracy: 0.766 ; kd_loss: 1.189 ; reg_loss: 1.252 ; loss: 1.202
+2022-12-05 21:23:03,449:INFO: Evaluating on validation set
+2022-12-05 21:23:09,294:INFO: - Eval metrics : accuracy: 0.674 ; total_loss: 0.000
+2022-12-05 21:23:09,698:INFO: 
+Epoch 10/200
+2022-12-05 21:24:42,118:INFO: - Train metrics: accuracy: 0.747 ; kd_loss: 1.089 ; reg_loss: 1.328 ; loss: 1.137
+2022-12-05 21:24:42,329:INFO: Evaluating on validation set
+2022-12-05 21:24:47,906:INFO: - Eval metrics : accuracy: 0.670 ; total_loss: 0.000
+2022-12-05 21:24:48,332:INFO: 
+Epoch 11/200
+2022-12-05 21:26:20,737:INFO: - Train metrics: accuracy: 0.784 ; kd_loss: 1.004 ; reg_loss: 1.287 ; loss: 1.061
+2022-12-05 21:26:20,948:INFO: Evaluating on validation set
+2022-12-05 21:26:26,623:INFO: - Eval metrics : accuracy: 0.678 ; total_loss: 0.000
+2022-12-05 21:26:27,043:INFO: 
+Epoch 12/200
+2022-12-05 21:27:59,460:INFO: - Train metrics: accuracy: 0.778 ; kd_loss: 0.967 ; reg_loss: 1.281 ; loss: 1.030
+2022-12-05 21:27:59,671:INFO: Evaluating on validation set
+2022-12-05 21:28:06,006:INFO: - Eval metrics : accuracy: 0.664 ; total_loss: 0.000
+2022-12-05 21:28:06,452:INFO: 
+Epoch 13/200
