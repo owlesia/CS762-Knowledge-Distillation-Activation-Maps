@@ -2,4 +2,4 @@
 Evaluating Knowledge Distillation using Saliency Maps
 
 # Training
-python main.py --model_dir ../experiments/resnet18_distill_Dec1
+python main.py --model_dir [../experiments/resnet18_distill_Dec1]
